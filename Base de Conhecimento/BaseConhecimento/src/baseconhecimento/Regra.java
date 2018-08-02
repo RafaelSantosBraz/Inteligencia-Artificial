@@ -28,8 +28,26 @@ public class Regra {
         this.antecedentes.add(new Antecedente(variavel, valor, operador));
     }
 
+    public Antecedente getAntecedente(Variavel variavel, Valor valor, Operador operador) {
+        for (Antecedente c : this.antecedentes) {
+            if (c.getVariavel() == variavel && c.getOperador() == operador && c.getValor() == valor) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     public void criarConsequente(Variavel variavel, Valor valor) {
         this.consequentes.add(new Consequente(variavel, valor));
+    }
+
+    public Consequente getConsequente(Variavel variavel, Valor valor) {
+        for (Consequente c : this.consequentes) {
+            if (c.getVariavel() == variavel && c.getValor() == valor) {
+                return c;
+            }
+        }
+        return null;
     }
 
     public List<Antecedente> getAntecedentes() {
