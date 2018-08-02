@@ -26,6 +26,15 @@ public class Variavel {
         this.valores = new ArrayList<>();
     }
 
+    public Valor getValor(String dado) {
+        for (Valor t : this.valores) {
+            if (t.getDado().equals(dado)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
     public void criarValor(String identificador) {
         this.valores.add(new Valor(identificador));
     }

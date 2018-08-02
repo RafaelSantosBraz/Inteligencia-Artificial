@@ -56,6 +56,19 @@ public class Ambiente {
         return null;
     }
 
+    public void criarOperador(String identificador) {
+        this.operadores.add(new Operador(identificador));
+    }
+
+    public Operador getOperador(String identificador) {
+        for (Operador t : this.operadores) {
+            if (t.getIdentificador().equals(identificador)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
     public BaseConhecimento getBase() {
         return base;
     }

@@ -24,20 +24,20 @@ public class Regra {
         this.consequentes = new ArrayList<>();
     }
 
+    public void criarAntecedente(Variavel variavel, Valor valor, Operador operador) {
+        this.antecedentes.add(new Antecedente(variavel, valor, operador));
+    }
+
+    public void criarConsequente(Variavel variavel, Valor valor) {
+        this.consequentes.add(new Consequente(variavel, valor));
+    }
+
     public List<Antecedente> getAntecedentes() {
         return antecedentes;
     }
 
-    public void setAntecedentes(List<Antecedente> antecedentes) {
-        this.antecedentes = antecedentes;
-    }
-
     public List<Consequente> getConsequentes() {
         return consequentes;
-    }
-
-    public void setConsequentes(List<Consequente> consequentes) {
-        this.consequentes = consequentes;
     }
 
     public String getIdentificador() {

@@ -27,8 +27,8 @@ public class BaseConhecimento {
     public void criarVariavel(String identificador, Tipo tipo) {
         this.variaveis.add(new Variavel(identificador, tipo));
     }
-    
-    public Variavel getVariavel (String identificador){
+
+    public Variavel getVariavel(String identificador) {
         for (Variavel v : this.variaveis) {
             if (v.getIdentificador().equals(identificador)) {
                 return v;
@@ -36,6 +36,20 @@ public class BaseConhecimento {
         }
         return null;
     }
+
+    public void criarRegra(String identificador) {
+        this.regras.add(new Regra(identificador));
+    }
+
+    public Regra getRegra(String identificador) {
+        for (Regra t : this.regras) {
+            if (t.getIdentificador().equals(identificador)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
     public String getIdentificador() {
         return identificador;
     }
