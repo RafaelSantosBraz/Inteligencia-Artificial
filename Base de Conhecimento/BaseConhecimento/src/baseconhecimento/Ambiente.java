@@ -25,14 +25,37 @@ public class Ambiente {
         this.base = new BaseConhecimento(nomeBase);
         this.interfaces = new ArrayList<>();
         this.memoTrab = new ArrayList<>();
+        this.tipos = new ArrayList<>();
         this.operadores = new ArrayList<>();
         this.execucoes = new ArrayList<>();
     }
 
-    public Tipo criarTipo(String identificador){
+    public void criarTipo(String identificador) {
         this.tipos.add(new Tipo(identificador));
-        return this.tipos.get(this.tipos.size()-1);
     }
+
+    public Tipo getTipo(String identificador) {
+        for (Tipo t : this.tipos) {
+            if (t.getIdentificador().equals(identificador)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public void criarInterface(Variavel variavel) {
+        this.interfaces.add(new Interface(variavel));
+    }
+
+    public Interface getInterface(Variavel variavel) {
+        for (Interface t : this.interfaces) {
+            if (t.getVariavel() == variavel) {
+                return t;
+            }
+        }
+        return null;
+    }
+
     public BaseConhecimento getBase() {
         return base;
     }
@@ -56,6 +79,5 @@ public class Ambiente {
     public List<Execucao> getExecucoes() {
         return execucoes;
     }
-    
-    
+
 }

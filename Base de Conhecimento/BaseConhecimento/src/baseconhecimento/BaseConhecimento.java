@@ -24,12 +24,18 @@ public class BaseConhecimento {
         this.variaveis = new ArrayList<>();
     }
 
-    public Variavel criarVariavel(String identificador, Tipo tipo) {
-        Variavel aux = new Variavel(identificador, tipo);
-        this.variaveis.add(aux);
-        return aux;
+    public void criarVariavel(String identificador, Tipo tipo) {
+        this.variaveis.add(new Variavel(identificador, tipo));
     }
-
+    
+    public Variavel getVariavel (String identificador){
+        for (Variavel v : this.variaveis) {
+            if (v.getIdentificador().equals(identificador)) {
+                return v;
+            }
+        }
+        return null;
+    }
     public String getIdentificador() {
         return identificador;
     }
