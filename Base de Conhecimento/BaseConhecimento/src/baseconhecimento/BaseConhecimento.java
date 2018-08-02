@@ -24,6 +24,12 @@ public class BaseConhecimento {
         this.variaveis = new ArrayList<>();
     }
 
+    public Variavel criarVariavel(String identificador, Tipo tipo) {
+        Variavel aux = new Variavel(identificador, tipo);
+        this.variaveis.add(aux);
+        return aux;
+    }
+
     public String getIdentificador() {
         return identificador;
     }
@@ -36,16 +42,8 @@ public class BaseConhecimento {
         return regras;
     }
 
-    public void setRegras(List<Regra> regras) {
-        this.regras = regras;
-    }
-
     public List<Variavel> getVariaveis() {
         return variaveis;
-    }
-
-    public void setVariaveis(List<Variavel> variaveis) {
-        this.variaveis = variaveis;
     }
 
 }

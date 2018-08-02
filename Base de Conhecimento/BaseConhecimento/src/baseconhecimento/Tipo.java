@@ -11,12 +11,12 @@ package baseconhecimento;
  */
 public class Tipo {
 
-    private String identificador;
-
+    private String identificador;    
+    
     public Tipo(String identificador) {
         this.identificador = identificador;
     }
-
+        
     public String getIdentificador() {
         return identificador;
     }
@@ -24,5 +24,5 @@ public class Tipo {
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
-
+    
 }

@@ -26,12 +26,12 @@ public class Variavel {
         this.valores = new ArrayList<>();
     }
 
-    public List<Valor> getValores() {
-        return valores;
+    public void criarValor(String identificador) {
+        this.valores.add(new Valor(identificador));
     }
 
-    public void setValores(List<Valor> valores) {
-        this.valores = valores;
+    public List<Valor> getValores() {
+        return valores;
     }
 
     public Tipo getTipo() {

@@ -12,8 +12,11 @@ import baseconhecimento.*;
  * @author Rafael Braz
  */
 public class Inicial {
-    
+
     public static void main(String[] args) {
-        Antecedente
+       Ambiente teste = new Ambiente("inicial");
+       teste.criarTipo("numerico");
+       teste.criarTipo("univalorado");
+       
     }
 }
