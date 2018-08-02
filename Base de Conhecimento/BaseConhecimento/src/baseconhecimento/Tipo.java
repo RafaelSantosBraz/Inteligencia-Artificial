@@ -13,6 +13,10 @@ public class Tipo {
 
     private String identificador;
 
+    public Tipo(String identificador) {
+        this.identificador = identificador;
+    }
+
     public String getIdentificador() {
         return identificador;
     }

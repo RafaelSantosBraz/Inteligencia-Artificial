@@ -5,6 +5,7 @@
  */
 package baseconhecimento;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +13,29 @@ import java.util.List;
  * @author Rafael Braz
  */
 public class MemoriaTrabalho {
+
+    private Variavel variavel;
     private List<Valor> temporarios;
-      
+
+    public MemoriaTrabalho(Variavel variavel) {
+        this.variavel = variavel;
+        this.temporarios = new ArrayList<>();
+    }
+
+    public Variavel getVariavel() {
+        return variavel;
+    }
+
+    public void setVariavel(Variavel variavel) {
+        this.variavel = variavel;
+    }
+
+    public List<Valor> getTemporarios() {
+        return temporarios;
+    }
+
+    public void setTemporarios(List<Valor> temporarios) {
+        this.temporarios = temporarios;
+    }
+
 }

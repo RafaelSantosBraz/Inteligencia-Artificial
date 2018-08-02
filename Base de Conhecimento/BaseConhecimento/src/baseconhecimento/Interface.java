@@ -7,12 +7,25 @@ package baseconhecimento;
 
 /**
  *
- * @author a120121
+ * @author Rafael Braz
  */
 public class Interface {
 
     private String pergunta;
     private String motivo;
+    private Variavel variavel;
+
+    public Interface(Variavel variavel) {
+        this.variavel = variavel;
+    }
+
+    public Variavel getVariavel() {
+        return variavel;
+    }
+
+    public void setVariavel(Variavel variavel) {
+        this.variavel = variavel;
+    }
 
     public String getPergunta() {
         return pergunta;
@@ -30,5 +43,4 @@ public class Interface {
         this.motivo = motivo;
     }
 
-    
 }

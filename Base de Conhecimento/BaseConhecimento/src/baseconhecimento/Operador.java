@@ -10,8 +10,12 @@ package baseconhecimento;
  * @author Rafael Braz
  */
 public class Operador {
-    
+
     private String identificador;
+
+    public Operador(String identificador) {
+        this.identificador = identificador;
+    }
 
     public String getIdentificador() {
         return identificador;
@@ -20,6 +24,5 @@ public class Operador {
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
-    
-    
+
 }

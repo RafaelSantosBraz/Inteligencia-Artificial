@@ -5,6 +5,8 @@
  */
 package baseconhecimento;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,7 +16,32 @@ public class Variavel {
 
     private String identificador;
     private Boolean objetivo;
-    
+    private List<Valor> valores;
+    private Tipo tipo;
+
+    public Variavel(String identificador, Tipo tipo) {
+        this.identificador = identificador;
+        this.tipo = tipo;
+        this.objetivo = false;
+        this.valores = new ArrayList<>();
+    }
+
+    public List<Valor> getValores() {
+        return valores;
+    }
+
+    public void setValores(List<Valor> valores) {
+        this.valores = valores;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
     public String getIdentificador() {
         return identificador;
     }

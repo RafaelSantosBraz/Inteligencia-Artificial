@@ -13,6 +13,10 @@ public class Valor {
 
     private String dado;
 
+    public Valor(String dado) {
+        this.dado = dado;
+    }
+
     public String getDado() {
         return dado;
     }
