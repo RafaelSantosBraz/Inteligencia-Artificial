@@ -11,18 +11,26 @@ package baseconhecimento;
  */
 public class Tipo {
 
-    private String identificador;    
-    
-    public Tipo(String identificador) {
+    private String identificador;
+    private Boolean multivalorado;
+    private Boolean numerico;
+
+    public Tipo(String identificador, Boolean multivalorado, Boolean numerico) {
         this.identificador = identificador;
+        this.multivalorado = multivalorado;
+        this.numerico = numerico;
     }
-        
+
     public String getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
+    public Boolean getMultivalorado() {
+        return multivalorado;
     }
-    
+
+    public Boolean getNumerico() {
+        return numerico;
+    }
+
 }

@@ -15,33 +15,32 @@ public class Inicial {
 
     public static void main(String[] args) {
         Ambiente teste = new Ambiente("inicial");
-        teste.criarTipo("numerico");
-        teste.criarTipo("univalorado");
-        teste.getBase().criarVariavel("custo", teste.getTipo("numerico"));
-        teste.getBase().criarVariavel("comprar", teste.getTipo("univalorado"));
-        teste.getBase().getVariavel("comprar").criarValor("sim");
-        teste.getBase().getVariavel("comprar").criarValor("nao");
-        teste.getBase().getVariavel("comprar").setObjetivo(true);
-        teste.getBase().criarVariavel("avaliacao", teste.getTipo("univalorado"));
-        teste.getBase().getVariavel("avaliacao").criarValor("caro");
-        teste.getBase().getVariavel("avaliacao").criarValor("barato");
-        teste.criarInterface(teste.getBase().getVariavel("custo"));
-        teste.getInterface(teste.getBase().getVariavel("custo")).setPergunta("Qual o valor?");
-        teste.getInterface(teste.getBase().getVariavel("custo")).setMotivo("Saber o valor.");
+        BaseConhecimento base = teste.getBase();
+        base.criarVariavel("custo", teste.getTipo("numerico"));
+        base.criarVariavel("comprar", teste.getTipo("univalorado"));
+        base.getVariavel("comprar").criarValor("sim");
+        base.getVariavel("comprar").criarValor("nao");
+        base.getVariavel("comprar").setObjetivo(true);
+        base.criarVariavel("avaliacao", teste.getTipo("univalorado"));
+        base.getVariavel("avaliacao").criarValor("caro");
+        base.getVariavel("avaliacao").criarValor("barato");
+        teste.criarInterface(base.getVariavel("custo"));
+        teste.getInterface(base.getVariavel("custo")).setPergunta("Qual o valor?");
+        teste.getInterface(base.getVariavel("custo")).setMotivo("Saber o valor.");
         teste.criarOperador(">=");
         teste.criarOperador("=");
         teste.criarOperador("<");
-        teste.getBase().criarRegra("avaliar_caro");
-        teste.getBase().getRegra("avaliar_caro").criarAntecedente(teste.getBase().getVariavel("custo"), new Valor("1000"), teste.getOperador(">="));
-        teste.getBase().getRegra("avaliar_caro").criarConsequente(teste.getBase().getVariavel("avaliacao"), teste.getBase().getVariavel("avaliacao").getValor("caro"));
-        teste.getBase().criarRegra("avaliar_barato");
-        teste.getBase().getRegra("avaliar_barato").criarAntecedente(teste.getBase().getVariavel("custo"), new Valor("1000"), teste.getOperador("<"));
-        teste.getBase().getRegra("avaliar_barato").criarConsequente(teste.getBase().getVariavel("avaliacao"), teste.getBase().getVariavel("avaliacao").getValor("barato"));
-        teste.getBase().criarRegra("aprovar_compra");
-        teste.getBase().getRegra("aprovar_compra").criarAntecedente(teste.getBase().getVariavel("avaliacao"), teste.getBase().getVariavel("avaliacao").getValor("caro"), teste.getOperador("="));
-        teste.getBase().getRegra("aprovar_compra").criarConsequente(teste.getBase().getVariavel("comprar"), teste.getBase().getVariavel("comprar").getValor("nao"));
-        teste.getBase().criarRegra("reprovar_compra");
-        teste.getBase().getRegra("reprovar_compra").criarAntecedente(teste.getBase().getVariavel("avaliacao"), teste.getBase().getVariavel("avaliacao").getValor("barato"), teste.getOperador("="));
-        teste.getBase().getRegra("reprovar_compra").criarConsequente(teste.getBase().getVariavel("comprar"), teste.getBase().getVariavel("comprar").getValor("sim"));
+        base.criarRegra("avaliar_caro");
+        base.getRegra("avaliar_caro").criarAntecedente(base.getVariavel("custo"), new Valor("1000"), teste.getOperador(">="));
+        base.getRegra("avaliar_caro").criarConsequente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("caro"));
+        base.criarRegra("avaliar_barato");
+        base.getRegra("avaliar_barato").criarAntecedente(base.getVariavel("custo"), new Valor("1000"), teste.getOperador("<"));
+        base.getRegra("avaliar_barato").criarConsequente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("barato"));
+        base.criarRegra("aprovar_compra");
+        base.getRegra("aprovar_compra").criarAntecedente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("caro"), teste.getOperador("="));
+        base.getRegra("aprovar_compra").criarConsequente(base.getVariavel("comprar"), base.getVariavel("comprar").getValor("nao"));
+        base.criarRegra("reprovar_compra");
+        base.getRegra("reprovar_compra").criarAntecedente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("barato"), teste.getOperador("="));
+        base.getRegra("reprovar_compra").criarConsequente(base.getVariavel("comprar"), base.getVariavel("comprar").getValor("sim"));
     }
 }

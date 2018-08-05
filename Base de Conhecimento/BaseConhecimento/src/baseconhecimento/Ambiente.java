@@ -28,10 +28,9 @@ public class Ambiente {
         this.tipos = new ArrayList<>();
         this.operadores = new ArrayList<>();
         this.execucoes = new ArrayList<>();
-    }
-
-    public void criarTipo(String identificador) {
-        this.tipos.add(new Tipo(identificador));
+        this.tipos.add(new Tipo("numerico", false, true));
+        this.tipos.add(new Tipo("univalorado", false, false));
+        this.tipos.add(new Tipo("multivalorado", true, false));
     }
 
     public Tipo getTipo(String identificador) {
