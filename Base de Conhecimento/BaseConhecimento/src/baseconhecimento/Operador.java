@@ -12,9 +12,11 @@ package baseconhecimento;
 public class Operador {
 
     private String identificador;
+    private Boolean geral;
 
-    public Operador(String identificador) {
+    public Operador(String identificador, Boolean geral) {
         this.identificador = identificador;
+        this.geral = geral;
     }
 
     public String getIdentificador() {
@@ -23,6 +25,14 @@ public class Operador {
 
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    public Boolean getGeral() {
+        return geral;
+    }
+
+    public void setGeral(Boolean geral) {
+        this.geral = geral;
     }
 
 }

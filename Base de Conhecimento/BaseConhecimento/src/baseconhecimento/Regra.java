@@ -24,8 +24,12 @@ public class Regra {
         this.consequentes = new ArrayList<>();
     }
 
-    public void criarAntecedente(Variavel variavel, Valor valor, Operador operador) {
+    public Boolean criarAntecedente(Variavel variavel, Valor valor, Operador operador) {
+        if (variavel.getTipo().getNumerico() && !(valor.getDado() instanceof Number)){
+            return false;
+        }
         this.antecedentes.add(new Antecedente(variavel, valor, operador));
+        return true;
     }
 
     public Antecedente getAntecedente(Variavel variavel, Valor valor, Operador operador) {

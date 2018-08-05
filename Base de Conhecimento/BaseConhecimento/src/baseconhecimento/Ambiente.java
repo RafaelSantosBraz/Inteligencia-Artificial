@@ -6,6 +6,7 @@
 package baseconhecimento;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,9 +29,19 @@ public class Ambiente {
         this.tipos = new ArrayList<>();
         this.operadores = new ArrayList<>();
         this.execucoes = new ArrayList<>();
-        this.tipos.add(new Tipo("numerico", false, true));
-        this.tipos.add(new Tipo("univalorado", false, false));
-        this.tipos.add(new Tipo("multivalorado", true, false));
+        this.tipos.addAll(Arrays.asList(
+                new Tipo("numerico", false, true),
+                new Tipo("univalorado", false, false),
+                new Tipo("multivalorado", true, false)
+        ));
+        this.operadores.addAll(Arrays.asList(
+                new Operador("=", true),
+                new Operador("<>", true),
+                new Operador(">", false),
+                new Operador("<", false),
+                new Operador(">=", false),
+                new Operador("<=", false)
+        ));
     }
 
     public Tipo getTipo(String identificador) {
@@ -42,7 +53,7 @@ public class Ambiente {
         return null;
     }
 
-    public void criarInterface(Variavel variavel) {
+    public void criarInterface(Variavel variavel) {        
         this.interfaces.add(new Interface(variavel));
     }
 
@@ -53,10 +64,6 @@ public class Ambiente {
             }
         }
         return null;
-    }
-
-    public void criarOperador(String identificador) {
-        this.operadores.add(new Operador(identificador));
     }
 
     public Operador getOperador(String identificador) {

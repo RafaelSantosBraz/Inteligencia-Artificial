@@ -35,8 +35,12 @@ public class Variavel {
         return null;
     }
 
-    public void criarValor(String identificador) {
-        this.valores.add(new Valor(identificador));
+    public Boolean criarValor(Object dado) {
+        if ((this.tipo.getNumerico() && dado instanceof Number) || (!this.tipo.getNumerico())) {
+            this.valores.add(new Valor(dado));
+            return true;
+        }
+        return false;
     }
 
     public List<Valor> getValores() {

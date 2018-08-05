@@ -27,11 +27,8 @@ public class Inicial {
         teste.criarInterface(base.getVariavel("custo"));
         teste.getInterface(base.getVariavel("custo")).setPergunta("Qual o valor?");
         teste.getInterface(base.getVariavel("custo")).setMotivo("Saber o valor.");
-        teste.criarOperador(">=");
-        teste.criarOperador("=");
-        teste.criarOperador("<");
         base.criarRegra("avaliar_caro");
-        base.getRegra("avaliar_caro").criarAntecedente(base.getVariavel("custo"), new Valor("1000"), teste.getOperador(">="));
+        base.getRegra("avaliar_caro").criarAntecedente(base.getVariavel("custo"), new Valor(1000), teste.getOperador(">="));
         base.getRegra("avaliar_caro").criarConsequente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("caro"));
         base.criarRegra("avaliar_barato");
         base.getRegra("avaliar_barato").criarAntecedente(base.getVariavel("custo"), new Valor("1000"), teste.getOperador("<"));

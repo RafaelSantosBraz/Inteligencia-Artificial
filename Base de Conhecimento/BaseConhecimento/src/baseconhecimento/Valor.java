@@ -11,17 +11,17 @@ package baseconhecimento;
  */
 public class Valor {
 
-    private String dado;
+    private Object dado;
 
-    public Valor(String dado) {
+    public Valor(Object dado) {
         this.dado = dado;
     }
 
-    public String getDado() {
+    public Object getDado() {
         return dado;
     }
 
-    public void setDado(String dado) {
+    public void setDado(Object dado) {
         this.dado = dado;
     }
 
