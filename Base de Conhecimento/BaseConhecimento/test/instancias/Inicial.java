@@ -31,7 +31,7 @@ public class Inicial {
         base.getRegra("avaliar_caro").criarAntecedente(base.getVariavel("custo"), new Valor(1000), teste.getOperador(">="));
         base.getRegra("avaliar_caro").criarConsequente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("caro"));
         base.criarRegra("avaliar_barato");
-        base.getRegra("avaliar_barato").criarAntecedente(base.getVariavel("custo"), new Valor("1000"), teste.getOperador("<"));
+        base.getRegra("avaliar_barato").criarAntecedente(base.getVariavel("custo"), new Valor(1000), teste.getOperador("<"));
         base.getRegra("avaliar_barato").criarConsequente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("barato"));
         base.criarRegra("aprovar_compra");
         base.getRegra("aprovar_compra").criarAntecedente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("caro"), teste.getOperador("="));
