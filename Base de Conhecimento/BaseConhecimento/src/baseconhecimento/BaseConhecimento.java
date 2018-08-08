@@ -50,6 +50,11 @@ public class BaseConhecimento {
         return null;
     }
 
+    public List<Variavel> getVarObjetivo() {
+        return (List<Variavel>) this.variaveis.stream().filter((x) -> (x.getObjetivo()));
+    }
+
+   
     public String getIdentificador() {
         return identificador;
     }

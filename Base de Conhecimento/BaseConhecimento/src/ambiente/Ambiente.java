@@ -54,7 +54,7 @@ public class Ambiente {
         return null;
     }
 
-    public void criarInterface(Variavel variavel) {        
+    public void criarInterface(Variavel variavel) {
         this.interfaces.add(new Interface(variavel));
     }
 
