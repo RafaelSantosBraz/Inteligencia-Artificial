@@ -5,6 +5,7 @@
  */
 package instancias;
 
+import ambiente.Ambiente;
 import baseconhecimento.*;
 
 /**

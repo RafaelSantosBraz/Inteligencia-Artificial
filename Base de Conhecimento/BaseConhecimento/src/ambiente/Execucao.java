@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package baseconhecimento;
+package ambiente;
+
+import baseconhecimento.Regra;
 
 /**
  *
