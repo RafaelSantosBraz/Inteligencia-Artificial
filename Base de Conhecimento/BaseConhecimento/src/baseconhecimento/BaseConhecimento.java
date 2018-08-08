@@ -7,6 +7,7 @@ package baseconhecimento;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -29,12 +30,10 @@ public class BaseConhecimento {
     }
 
     public Variavel getVariavel(String identificador) {
-        for (Variavel v : this.variaveis) {
-            if (v.getIdentificador().equals(identificador)) {
-                return v;
-            }
-        }
-        return null;
+        return (Variavel) this.variaveis.stream()
+                .filter(x -> x.getIdentificador().equals(identificador))
+                .findAny()
+                .orElse(null);
     }
 
     public void criarRegra(String identificador) {
@@ -42,19 +41,18 @@ public class BaseConhecimento {
     }
 
     public Regra getRegra(String identificador) {
-        for (Regra t : this.regras) {
-            if (t.getIdentificador().equals(identificador)) {
-                return t;
-            }
-        }
-        return null;
+        return (Regra) this.regras.stream()
+                .filter(x -> x.getIdentificador().equals(identificador))
+                .findAny()
+                .orElse(null);
     }
 
     public List<Variavel> getVarObjetivo() {
-        return (List<Variavel>) this.variaveis.stream().filter((x) -> (x.getObjetivo()));
+        return this.variaveis.stream()
+                .filter(x -> x.getObjetivo())
+                .collect(Collectors.toList());
     }
 
-   
     public String getIdentificador() {
         return identificador;
     }
