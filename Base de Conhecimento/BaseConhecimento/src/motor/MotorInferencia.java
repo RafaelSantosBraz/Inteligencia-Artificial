@@ -56,7 +56,7 @@ public class MotorInferencia {
             if (aux.isEmpty()) {
                 if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
                     this.ambiente.criarMemoTrab(t.getVariavel());
-                }
+                }                
                 this.ambiente.getMemoTrab(t.getVariavel()).addValores(this.ambiente.getInterface(t.getVariavel()).solicitar());
             } else if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
                 aux.forEach((x) -> {
