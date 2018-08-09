@@ -11,11 +11,13 @@ import java.util.List;
 
 /**
  *
- * @author a120121
+ * @author Rafael Braz
  */
 public class MotorInferencia {
 
     private Ambiente ambiente;
+    private List<Variavel> objetivos;
+    private List<Regra> regrasObjetivo;
 
     public MotorInferencia(Ambiente ambiente) {
         this.ambiente = ambiente;
@@ -27,10 +29,10 @@ public class MotorInferencia {
 
     public Boolean executar() {
         // identificar objetivos        
-        List<Variavel> objetivos = ambiente.getBase().getVarObjetivo();
+        this.objetivos = ambiente.getBase().getVarObjetivo();
         // regras que tem o objetivo
-        List<Regra> regrasObjetivo;
-        // início da recursão
+        this.regrasObjetivo = ambiente.getBase().getRegrasObjetivo(this.objetivos);
+        // início da recursão        
         return true;
     }
 

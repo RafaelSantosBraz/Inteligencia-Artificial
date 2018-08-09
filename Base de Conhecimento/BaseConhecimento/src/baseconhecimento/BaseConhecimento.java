@@ -51,6 +51,18 @@ public class BaseConhecimento {
                 .orElse(null);
     }
 
+    public List<Regra> getRegrasObjetivo(List<Variavel> objetivos) {
+        List<Regra> aux = new ArrayList<>();
+        this.regras.forEach((t) -> {
+            if (!(t.getConsequentes().stream()
+                    .filter(x -> objetivos.contains(x.getVariavel()))
+                    .collect(Collectors.toList())).isEmpty()) {
+                aux.add(t);
+            }
+        });
+        return aux;
+    }
+
     public List<Variavel> getVarObjetivo() {
         return this.variaveis.stream()
                 .filter(x -> x.getObjetivo())

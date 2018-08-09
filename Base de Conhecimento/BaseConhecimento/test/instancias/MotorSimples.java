@@ -7,6 +7,7 @@ package instancias;
 
 import ambiente.*;
 import baseconhecimento.*;
+import motor.*;
 
 /**
  *
@@ -39,6 +40,8 @@ public class MotorSimples {
         b.criarRegra("R2");
         b.getRegra("R2").criarAntecedente(b.getVariavel("B"), b.getVariavel("B").getValor("sim"), a.getOperador("="));
         b.getRegra("R2").criarConsequente(b.getVariavel("D"), b.getVariavel("D").getValor("não"));
-       
+        
+        MotorInferencia m = new MotorInferencia(a);
+        m.executar();
     }
 }
