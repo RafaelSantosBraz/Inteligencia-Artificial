@@ -48,7 +48,6 @@ public class MotorInferencia {
         });
         return true;
     }
-    
 
     private void calcularAntecedentes(Regra regra) {
         regra.getAntecedentes().forEach((t) -> {
@@ -56,7 +55,7 @@ public class MotorInferencia {
             if (aux.isEmpty()) {
                 if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
                     this.ambiente.criarMemoTrab(t.getVariavel());
-                }                
+                }
                 this.ambiente.getMemoTrab(t.getVariavel()).addValores(this.ambiente.getInterface(t.getVariavel()).solicitar());
             } else if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
                 aux.forEach((x) -> {
@@ -64,7 +63,11 @@ public class MotorInferencia {
                 });
             }
         });
+        if (aplicarAntecedentes(regra)) {
 
+        } else {
+
+        }
     }
 
     private List<Regra> listarDefinicoes(Variavel variavel) {
@@ -80,6 +83,34 @@ public class MotorInferencia {
     }
 
     private Boolean aplicarAntecedentes(Regra regra) {
+        Boolean aux = regra.getAntecedentes().get(0).getRelacionamento();
+        regra.getAntecedentes().forEach((t) -> {
+            if (compararValor(t.getVariavel(), t.getValor(), t.getOperador())) {
+
+            }
+        });
         return true;
     }
+
+    private Boolean compararValor(Variavel variavel, Valor valor, Operador operador) {
+        if (!variavel.getTipo().getNumerico()) {
+            int op = this.ambiente.getOperadores().indexOf(operador);
+            switch (op) {
+                case 0: // =
+                    if (this.ambiente.getMemoTrab(variavel).getTemporarios().contains(valor)) {
+                        return true;
+                    }
+                    return false;
+                case 1: // <>
+                    if (!this.ambiente.getMemoTrab(variavel).getTemporarios().contains(valor)) {
+                        return true;
+                    }
+                    return false;
+            }
+        } else {
+
+        }
+        return false;
+    }
+
 }
