@@ -56,6 +56,14 @@ public class Ambiente {
         this.interfaces.add(new Interface(variavel));
     }
 
+    public void criarInterface(Variavel variavel, String pergunta) {
+        this.interfaces.add(new Interface(variavel, pergunta));
+    }
+
+    public void criarInterface(Variavel variavel, String pergunta, String motivo) {
+        this.interfaces.add(new Interface(variavel, pergunta, motivo));
+    }
+
     public Interface getInterface(Variavel variavel) {
         return (Interface) this.interfaces.stream()
                 .filter(x -> x.getVariavel() == variavel)

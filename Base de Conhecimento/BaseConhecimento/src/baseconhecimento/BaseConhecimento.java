@@ -29,6 +29,10 @@ public class BaseConhecimento {
         this.variaveis.add(new Variavel(identificador, tipo));
     }
 
+    public void criarVariavel(String identificador, Tipo tipo, Boolean objetivo) {
+        this.variaveis.add(new Variavel(identificador, tipo, objetivo));
+    }
+
     public Variavel getVariavel(String identificador) {
         return (Variavel) this.variaveis.stream()
                 .filter(x -> x.getIdentificador().equals(identificador))
