@@ -5,8 +5,7 @@
  */
 package ambiente;
 
-import baseconhecimento.Valor;
-import baseconhecimento.Variavel;
+import baseconhecimento.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +23,14 @@ public class MemoriaTrabalho {
         this.temporarios = new ArrayList<>();
     }
 
+    public void addValor(Valor valor) {
+        this.temporarios.add(valor);
+    }
+
+    public void addValores(List<Valor> valores) {
+        this.temporarios.addAll(valores);
+    }
+
     public Variavel getVariavel() {
         return variavel;
     }
@@ -34,10 +41,6 @@ public class MemoriaTrabalho {
 
     public List<Valor> getTemporarios() {
         return temporarios;
-    }
-
-    public void setTemporarios(List<Valor> temporarios) {
-        this.temporarios = temporarios;
     }
 
 }

@@ -78,6 +78,17 @@ public class Ambiente {
                 .orElse(null);
     }
 
+    public void criarMemoTrab(Variavel variavel) {
+        this.memoTrab.add(new MemoriaTrabalho(variavel));
+    }
+
+    public MemoriaTrabalho getMemoTrab(Variavel variavel) {
+        return (MemoriaTrabalho) this.memoTrab.stream()
+                .filter(x -> x.getVariavel() == variavel)
+                .findAny()
+                .orElse(null);
+    }
+
     public BaseConhecimento getBase() {
         return base;
     }

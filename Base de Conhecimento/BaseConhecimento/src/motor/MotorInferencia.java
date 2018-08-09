@@ -7,7 +7,9 @@ package motor;
 
 import ambiente.*;
 import baseconhecimento.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -27,13 +29,50 @@ public class MotorInferencia {
         return ambiente;
     }
 
+    public List<Variavel> getObjetivos() {
+        return objetivos;
+    }
+
+    public List<Regra> getRegrasObjetivo() {
+        return regrasObjetivo;
+    }
+
     public Boolean executar() {
         // identificar objetivos        
         this.objetivos = ambiente.getBase().getVarObjetivo();
         // regras que tem o objetivo
         this.regrasObjetivo = ambiente.getBase().getRegrasObjetivo(this.objetivos);
         // início da recursão        
+        this.regrasObjetivo.forEach((t) -> {
+            calcular(t);
+        });
         return true;
+    }
+
+    private void calcular(Regra regra) {
+        regra.getAntecedentes().forEach((t) -> {
+            List<Regra> aux = listarDefinicoes(t.getVariavel());
+            if (aux.isEmpty()) {
+                if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
+                    this.ambiente.criarMemoTrab(t.getVariavel());
+                }
+                this.ambiente.getMemoTrab(t.getVariavel()).addValores(this.ambiente.getInterface(t.getVariavel()).solicitar());
+            } else{
+                
+            }
+        });
+    }
+
+    private List<Regra> listarDefinicoes(Variavel variavel) {
+        List<Regra> aux = new ArrayList<>();
+        this.ambiente.getBase().getRegras().forEach((t) -> {
+            if (!(t.getConsequentes().stream()
+                    .filter(x -> x.getVariavel() == variavel)
+                    .collect(Collectors.toList())).isEmpty()) {
+                aux.add(t);
+            }
+        });
+        return aux;
     }
 
 }
