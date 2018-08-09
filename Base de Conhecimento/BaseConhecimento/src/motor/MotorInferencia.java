@@ -44,12 +44,12 @@ public class MotorInferencia {
         this.regrasObjetivo = ambiente.getBase().getRegrasObjetivo(this.objetivos);
         // início da recursão        
         this.regrasObjetivo.forEach((t) -> {
-            calcular(t);
+            calcularAntecedentes(t);
         });
         return true;
     }
 
-    private void calcular(Regra regra) {
+    private void calcularAntecedentes(Regra regra) {
         regra.getAntecedentes().forEach((t) -> {
             List<Regra> aux = listarDefinicoes(t.getVariavel());
             if (aux.isEmpty()) {
@@ -57,10 +57,13 @@ public class MotorInferencia {
                     this.ambiente.criarMemoTrab(t.getVariavel());
                 }
                 this.ambiente.getMemoTrab(t.getVariavel()).addValores(this.ambiente.getInterface(t.getVariavel()).solicitar());
-            } else{
-                
+            } else if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
+                aux.forEach((x) -> {
+                    calcularAntecedentes(x);
+                });
             }
         });
+
     }
 
     private List<Regra> listarDefinicoes(Variavel variavel) {
@@ -75,4 +78,7 @@ public class MotorInferencia {
         return aux;
     }
 
+    private Boolean aplicarAntecedentes(Regra regra) {
+        return true;
+    }
 }
