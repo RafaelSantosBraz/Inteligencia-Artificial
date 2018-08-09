@@ -14,11 +14,16 @@ public class Operador {
     private String identificador;
     private Boolean geral;
 
+    public Operador(String identificador) {
+        this.identificador = identificador;
+        this.geral = true;
+    }
+    
     public Operador(String identificador, Boolean geral) {
         this.identificador = identificador;
         this.geral = geral;
     }
-
+    
     public String getIdentificador() {
         return identificador;
     }

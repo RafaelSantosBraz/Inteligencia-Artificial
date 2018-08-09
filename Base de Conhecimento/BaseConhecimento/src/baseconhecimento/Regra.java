@@ -25,20 +25,34 @@ public class Regra {
     }
 
     public Boolean criarAntecedente(Variavel variavel, Valor valor, Operador operador) {
-        if (variavel.getTipo().getNumerico() && !(valor.getDado() instanceof Number)){
+        if (variavel.getTipo().getNumerico() && !(valor.getDado() instanceof Number)) {
             return false;
         }
         this.antecedentes.add(new Antecedente(variavel, valor, operador));
         return true;
     }
 
-    public Antecedente getAntecedente(Variavel variavel, Valor valor, Operador operador) {
-        for (Antecedente c : this.antecedentes) {
-            if (c.getVariavel() == variavel && c.getOperador() == operador && c.getValor() == valor) {
-                return c;
-            }
+    public Boolean criarAntecedente(Variavel variavel, Valor valor, Operador operador, Boolean relacionamento) {
+        if (variavel.getTipo().getNumerico() && !(valor.getDado() instanceof Number)) {
+            return false;
         }
-        return null;
+        this.antecedentes.add(new Antecedente(variavel, valor, operador, relacionamento));
+        return true;
+    }
+
+    public Boolean criarAntecedente(Variavel variavel, Valor valor, Operador operador, Boolean relacionamento, Boolean not) {
+        if (variavel.getTipo().getNumerico() && !(valor.getDado() instanceof Number)) {
+            return false;
+        }
+        this.antecedentes.add(new Antecedente(variavel, valor, operador, relacionamento, not));
+        return true;
+    }
+
+    public Antecedente getAntecedente(Variavel variavel, Valor valor, Operador operador) {
+        return (Antecedente) this.antecedentes.stream()
+                .filter(x -> (x.getVariavel() == variavel && x.getOperador() == operador && x.getValor() == valor))
+                .findAny()
+                .orElse(null);
     }
 
     public void criarConsequente(Variavel variavel, Valor valor) {
@@ -46,12 +60,10 @@ public class Regra {
     }
 
     public Consequente getConsequente(Variavel variavel, Valor valor) {
-        for (Consequente c : this.consequentes) {
-            if (c.getVariavel() == variavel && c.getValor() == valor) {
-                return c;
-            }
-        }
-        return null;
+        return (Consequente) this.consequentes.stream()
+                .filter(x -> (x.getVariavel() == variavel && x.getValor() == valor))
+                .findAny()
+                .orElse(null);
     }
 
     public List<Antecedente> getAntecedentes() {

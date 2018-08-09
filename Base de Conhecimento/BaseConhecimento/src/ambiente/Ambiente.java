@@ -36,8 +36,8 @@ public class Ambiente {
                 new Tipo("multivalorado", true, false)
         ));
         this.operadores.addAll(Arrays.asList(
-                new Operador("=", true),
-                new Operador("<>", true),
+                new Operador("="),
+                new Operador("<>"),
                 new Operador(">", false),
                 new Operador("<", false),
                 new Operador(">=", false),
@@ -46,12 +46,10 @@ public class Ambiente {
     }
 
     public Tipo getTipo(String identificador) {
-        for (Tipo t : this.tipos) {
-            if (t.getIdentificador().equals(identificador)) {
-                return t;
-            }
-        }
-        return null;
+        return (Tipo) this.tipos.stream()
+                .filter(x -> x.getIdentificador().equals(identificador))
+                .findAny()
+                .orElse(null);
     }
 
     public void criarInterface(Variavel variavel) {
@@ -59,21 +57,17 @@ public class Ambiente {
     }
 
     public Interface getInterface(Variavel variavel) {
-        for (Interface t : this.interfaces) {
-            if (t.getVariavel() == variavel) {
-                return t;
-            }
-        }
-        return null;
+        return (Interface) this.interfaces.stream()
+                .filter(x -> x.getVariavel() == variavel)
+                .findAny()
+                .orElse(null);
     }
 
     public Operador getOperador(String identificador) {
-        for (Operador t : this.operadores) {
-            if (t.getIdentificador().equals(identificador)) {
-                return t;
-            }
-        }
-        return null;
+        return (Operador) this.operadores.stream()
+                .filter(x -> x.getIdentificador().equals(identificador))
+                .findAny()
+                .orElse(null);
     }
 
     public BaseConhecimento getBase() {

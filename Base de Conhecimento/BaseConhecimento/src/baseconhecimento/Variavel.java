@@ -26,13 +26,18 @@ public class Variavel {
         this.valores = new ArrayList<>();
     }
 
+    public Variavel(String identificador, Tipo tipo, Boolean objetivo) {
+        this.identificador = identificador;
+        this.tipo = tipo;
+        this.objetivo = objetivo;
+        this.valores = new ArrayList<>();
+    }
+
     public Valor getValor(String dado) {
-        for (Valor t : this.valores) {
-            if (t.getDado().equals(dado)) {
-                return t;
-            }
-        }
-        return null;
+        return (Valor) this.valores.stream()
+                .filter(x -> x.getDado() == dado)
+                .findAny()
+                .orElse(null);
     }
 
     public Boolean criarValor(Object dado) {

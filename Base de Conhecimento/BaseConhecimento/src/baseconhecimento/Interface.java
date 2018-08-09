@@ -19,6 +19,17 @@ public class Interface {
         this.variavel = variavel;
     }
 
+    public Interface(Variavel variavel, String pergunta) {
+        this.variavel = variavel;
+        this.pergunta = pergunta;
+    }
+
+    public Interface(Variavel variavel, String pergunta, String motivo) {
+        this.pergunta = pergunta;
+        this.motivo = motivo;
+        this.variavel = variavel;
+    }
+
     public Variavel getVariavel() {
         return variavel;
     }

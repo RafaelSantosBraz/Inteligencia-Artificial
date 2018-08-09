@@ -25,6 +25,22 @@ public class Antecedente {
         this.not = false;
     }
 
+    public Antecedente(Variavel variavel, Valor valor, Operador operador, Boolean relacionamento) {
+        this.variavel = variavel;
+        this.valor = valor;
+        this.operador = operador;
+        this.relacionamento = relacionamento;
+        this.not = false;
+    }
+
+    public Antecedente(Variavel variavel, Valor valor, Operador operador, Boolean relacionamento, Boolean not) {
+        this.variavel = variavel;
+        this.valor = valor;
+        this.operador = operador;
+        this.relacionamento = relacionamento;
+        this.not = not;
+    }
+
     public Operador getOperador() {
         return operador;
     }
