@@ -48,6 +48,7 @@ public class MotorInferencia {
         });
         return true;
     }
+    
 
     private void calcularAntecedentes(Regra regra) {
         regra.getAntecedentes().forEach((t) -> {
