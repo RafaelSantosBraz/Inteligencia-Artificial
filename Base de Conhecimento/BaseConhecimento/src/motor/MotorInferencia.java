@@ -38,7 +38,7 @@ public class MotorInferencia {
         return regrasObjetivo;
     }
     
-    public Boolean executar() {
+    public void executar() {
         // identificar objetivos        
         this.objetivos = ambiente.getBase().getVarObjetivo();
         // regras que tem o objetivo
@@ -46,8 +46,14 @@ public class MotorInferencia {
         // início da recursão        
         this.regrasObjetivo.forEach((t) -> {
             calcularAntecedentes(t);
+        });        
+        System.out.println("Resultados: ");
+        this.objetivos.forEach((t) -> {
+            System.out.println("\t Variável: " + t.getIdentificador());
+            ambiente.getMemoTrab(t).getTemporarios().forEach((x) -> {
+                System.out.println("\t\t" + x.getDado());
+            });
         });
-        return true;
     }
     
     private void calcularAntecedentes(Regra regra) {
@@ -66,6 +72,9 @@ public class MotorInferencia {
         });
         if (aplicarAntecedentes(regra)) {
             regra.getConsequentes().forEach((t) -> {
+                if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
+                    this.ambiente.criarMemoTrab(t.getVariavel());
+                }
                 this.ambiente.getMemoTrab(t.getVariavel()).addValor(t.getValor());
             });
         }
