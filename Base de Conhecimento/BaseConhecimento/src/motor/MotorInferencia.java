@@ -7,7 +7,6 @@ package motor;
 
 import ambiente.*;
 import baseconhecimento.*;
-import com.sun.org.apache.xpath.internal.operations.And;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,27 +16,27 @@ import java.util.stream.Collectors;
  * @author Rafael Braz
  */
 public class MotorInferencia {
-    
+
     private Ambiente ambiente;
     private List<Variavel> objetivos;
     private List<Regra> regrasObjetivo;
-    
+
     public MotorInferencia(Ambiente ambiente) {
         this.ambiente = ambiente;
     }
-    
+
     public Ambiente getAmbiente() {
         return ambiente;
     }
-    
+
     public List<Variavel> getObjetivos() {
         return objetivos;
     }
-    
+
     public List<Regra> getRegrasObjetivo() {
         return regrasObjetivo;
     }
-    
+
     public void executar() {
         // identificar objetivos        
         this.objetivos = ambiente.getBase().getVarObjetivo();
@@ -46,7 +45,7 @@ public class MotorInferencia {
         // início da recursão        
         this.regrasObjetivo.forEach((t) -> {
             calcularAntecedentes(t);
-        });        
+        });
         System.out.println("Resultados: ");
         this.objetivos.forEach((t) -> {
             System.out.println("\t Variável: " + t.getIdentificador());
@@ -55,16 +54,14 @@ public class MotorInferencia {
             });
         });
     }
-    
+
     private void calcularAntecedentes(Regra regra) {
         regra.getAntecedentes().forEach((t) -> {
             List<Regra> aux = listarDefinicoes(t.getVariavel());
-            if (aux.isEmpty()) {
-                if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
-                    this.ambiente.criarMemoTrab(t.getVariavel());
-                }
+            if (aux.isEmpty() && this.ambiente.getMemoTrab(t.getVariavel()) == null) {
+                this.ambiente.criarMemoTrab(t.getVariavel());
                 this.ambiente.getMemoTrab(t.getVariavel()).addValores(this.ambiente.getInterface(t.getVariavel()).solicitar());
-            } else if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
+            } else if (!aux.isEmpty()) {
                 aux.forEach((x) -> {
                     calcularAntecedentes(x);
                 });
@@ -79,7 +76,7 @@ public class MotorInferencia {
             });
         }
     }
-    
+
     private List<Regra> listarDefinicoes(Variavel variavel) {
         List<Regra> aux = new ArrayList<>();
         this.ambiente.getBase().getRegras().forEach((t) -> {
@@ -91,11 +88,11 @@ public class MotorInferencia {
         });
         return aux;
     }
-    
+
     private Boolean aplicarAntecedentes(Regra regra) {
         Boolean resp = regra.getAntecedentes().get(0).getRelacionamento();
         for (Antecedente t : regra.getAntecedentes()) {
-            // true = And
+            // true = and
             if (t.getRelacionamento()) {
                 resp = Boolean.logicalAnd(resp, compararValor(t.getVariavel(), t.getValor(), t.getOperador(), t.getNot()));
             } else {
@@ -104,7 +101,7 @@ public class MotorInferencia {
         }
         return resp;
     }
-    
+
     private Boolean compararValor(Variavel variavel, Valor valor, Operador operador, Boolean not) {
         Boolean aux = false;
         int op = this.ambiente.getOperadores().indexOf(operador);
@@ -132,5 +129,5 @@ public class MotorInferencia {
         }
         return aux;
     }
-    
+
 }

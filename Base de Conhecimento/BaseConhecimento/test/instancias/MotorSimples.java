@@ -11,7 +11,7 @@ import motor.*;
 
 /**
  *
- * @author rafin
+ * @author Rafael Braz
  */
 public class MotorSimples {
 
