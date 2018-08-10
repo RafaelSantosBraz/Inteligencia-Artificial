@@ -80,6 +80,7 @@ public class Interface {
                 aux.add(this.variavel.getValor(s.next()));
             }
         }
+        s.close();
         return aux;
     }
 }
