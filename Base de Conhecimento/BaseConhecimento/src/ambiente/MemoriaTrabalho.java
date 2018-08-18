@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class MemoriaTrabalho {
 
-    private Variavel variavel;
-    private List<Valor> temporarios;
+    private final Variavel variavel;
+    private final List<Valor> temporarios;
 
     public MemoriaTrabalho(Variavel variavel) {
         this.variavel = variavel;
@@ -24,19 +24,25 @@ public class MemoriaTrabalho {
     }
 
     public void addValor(Valor valor) {
-        this.temporarios.add(valor);
+        if (this.variavel.getTipo().getNumerico() || !this.variavel.getTipo().getMultivalorado()) {
+            if (!this.temporarios.isEmpty()){
+                this.temporarios.remove(0);
+            }
+        } else {
+            this.temporarios.add(valor);
+        }
     }
 
     public void addValores(List<Valor> valores) {
         this.temporarios.addAll(valores);
     }
 
-    public Variavel getVariavel() {
-        return variavel;
+    public Boolean isVazio() {
+        return this.temporarios.isEmpty();
     }
 
-    public void setVariavel(Variavel variavel) {
-        this.variavel = variavel;
+    public Variavel getVariavel() {
+        return variavel;
     }
 
     public List<Valor> getTemporarios() {

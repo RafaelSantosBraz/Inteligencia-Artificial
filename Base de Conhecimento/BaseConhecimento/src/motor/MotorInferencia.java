@@ -60,9 +60,9 @@ public class MotorInferencia {
     private void calcularAntecedentes(Regra regra) {
         regra.getAntecedentes().forEach((t) -> {
             List<Regra> aux = listarDefinicoes(t.getVariavel());
-            if (aux.isEmpty() && this.ambiente.getMemoTrab(t.getVariavel()) == null) {
-                this.ambiente.criarMemoTrab(t.getVariavel());
-                this.ambiente.getMemoTrab(t.getVariavel()).addValores(this.ambiente.getInterface(t.getVariavel()).solicitar());
+            MemoriaTrabalho memo = this.ambiente.getMemoTrab(t.getVariavel());
+            if (aux.isEmpty() && memo.isVazio()) {                
+                memo.addValores(this.ambiente.getInterface(t.getVariavel()).solicitar());
             } else if (!aux.isEmpty()) {
                 aux.forEach((x) -> {
                     calcularAntecedentes(x);
@@ -70,10 +70,7 @@ public class MotorInferencia {
             }
         });
         if (aplicarAntecedentes(regra)) {
-            regra.getConsequentes().forEach((t) -> {
-                if (this.ambiente.getMemoTrab(t.getVariavel()) == null) {
-                    this.ambiente.criarMemoTrab(t.getVariavel());
-                }
+            regra.getConsequentes().forEach((t) -> {                
                 this.ambiente.getMemoTrab(t.getVariavel()).addValor(t.getValor());
             });
         }
