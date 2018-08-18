@@ -24,7 +24,7 @@ public class Antecedente {
         this.relacionamento = true;
         this.not = false;
     }
-
+    
     public Antecedente(Variavel variavel, Valor valor, Operador operador, Boolean relacionamento) {
         this.variavel = variavel;
         this.valor = valor;

@@ -17,12 +17,14 @@ import java.util.stream.Collectors;
  */
 public class MotorInferencia {
 
-    private Ambiente ambiente;
+    private final Ambiente ambiente;
     private List<Variavel> objetivos;
     private List<Regra> regrasObjetivo;
 
     public MotorInferencia(Ambiente ambiente) {
-        this.ambiente = ambiente;
+        (this.ambiente = ambiente).getBase().getVariaveis().forEach((t) -> {
+            this.ambiente.criarMemoTrab(t);
+        });
     }
 
     public Ambiente getAmbiente() {

@@ -16,26 +16,23 @@ import java.util.List;
  */
 public class Ambiente {
 
-    private BaseConhecimento base;
-    private List<Interface> interfaces;
-    private List<MemoriaTrabalho> memoTrab;
-    private List<Tipo> tipos;
-    private List<Operador> operadores;
-    private List<Execucao> execucoes;
+    private final BaseConhecimento base;
+    private final List<Interface> interfaces;
+    private final List<MemoriaTrabalho> memoTrab;
+    private final List<Tipo> tipos;
+    private final List<Operador> operadores;
+    private final List<Execucao> execucoes;
 
     public Ambiente(String nomeBase) {
         this.base = new BaseConhecimento(nomeBase);
         this.interfaces = new ArrayList<>();
         this.memoTrab = new ArrayList<>();
-        this.tipos = new ArrayList<>();
-        this.operadores = new ArrayList<>();
-        this.execucoes = new ArrayList<>();
-        this.tipos.addAll(Arrays.asList(
+        (this.tipos = new ArrayList<>()).addAll(Arrays.asList(
                 new Tipo("numerico", false, true),
                 new Tipo("univalorado", false, false),
                 new Tipo("multivalorado", true, false)
         ));
-        this.operadores.addAll(Arrays.asList(
+        (this.operadores = new ArrayList<>()).addAll(Arrays.asList(
                 new Operador("="),
                 new Operador("<>"),
                 new Operador(">", false),
@@ -43,6 +40,7 @@ public class Ambiente {
                 new Operador(">=", false),
                 new Operador("<=", false)
         ));
+        this.execucoes = new ArrayList<>();       
     }
 
     public Tipo getTipo(String identificador) {

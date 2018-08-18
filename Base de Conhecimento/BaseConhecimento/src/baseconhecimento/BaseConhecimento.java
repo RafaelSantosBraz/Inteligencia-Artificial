@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 public class BaseConhecimento {
 
     private String identificador;
-    private List<Regra> regras;
-    private List<Variavel> variaveis;
+    private final List<Regra> regras;
+    private final List<Variavel> variaveis;
 
     public BaseConhecimento(String identificador) {
         this.identificador = identificador;
