@@ -61,7 +61,7 @@ public class MotorInferencia {
         regra.getAntecedentes().forEach((t) -> {
             List<Regra> aux = listarDefinicoes(t.getVariavel());
             MemoriaTrabalho memo = this.ambiente.getMemoTrab(t.getVariavel());
-            if (aux.isEmpty() && memo.isVazio()) {                
+            if (aux.isEmpty() && memo.isVazio()) {
                 memo.addValores(this.ambiente.getInterface(t.getVariavel()).solicitar());
             } else if (!aux.isEmpty()) {
                 aux.forEach((x) -> {
@@ -70,7 +70,7 @@ public class MotorInferencia {
             }
         });
         if (aplicarAntecedentes(regra)) {
-            regra.getConsequentes().forEach((t) -> {                
+            regra.getConsequentes().forEach((t) -> {
                 this.ambiente.getMemoTrab(t.getVariavel()).addValor(t.getValor());
             });
         }
@@ -112,7 +112,7 @@ public class MotorInferencia {
             }
         } else {
             // 0 - igual, >0 - maior, <0 - menor
-            int comp = Double.compare((double) temps.get(0).getDado(), (double) valor.getDado());
+            int comp = Double.compare(Double.parseDouble(temps.get(0).getDado().toString()), Double.parseDouble(valor.getDado().toString()));
             // = <> > < >= <=
             if ((op == 0 && comp == 0)
                     || (op == 1 && comp != 0)

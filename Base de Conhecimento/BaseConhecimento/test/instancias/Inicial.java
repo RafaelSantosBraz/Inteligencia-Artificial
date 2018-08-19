@@ -7,6 +7,7 @@ package instancias;
 
 import ambiente.Ambiente;
 import baseconhecimento.*;
+import motor.MotorInferencia;
 
 /**
  *
@@ -40,5 +41,8 @@ public class Inicial {
         base.criarRegra("reprovar_compra");
         base.getRegra("reprovar_compra").criarAntecedente(base.getVariavel("avaliacao"), base.getVariavel("avaliacao").getValor("barato"), teste.getOperador("="));
         base.getRegra("reprovar_compra").criarConsequente(base.getVariavel("comprar"), base.getVariavel("comprar").getValor("sim"));
+        
+        MotorInferencia motor = new MotorInferencia(teste);
+        motor.executar();
     }
 }

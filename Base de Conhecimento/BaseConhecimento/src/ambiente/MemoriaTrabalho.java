@@ -25,12 +25,11 @@ public class MemoriaTrabalho {
 
     public void addValor(Valor valor) {
         if (this.variavel.getTipo().getNumerico() || !this.variavel.getTipo().getMultivalorado()) {
-            if (!this.temporarios.isEmpty()){
+            if (!this.temporarios.isEmpty()) {
                 this.temporarios.remove(0);
             }
-        } else {
-            this.temporarios.add(valor);
         }
+        this.temporarios.add(valor);
     }
 
     public void addValores(List<Valor> valores) {
