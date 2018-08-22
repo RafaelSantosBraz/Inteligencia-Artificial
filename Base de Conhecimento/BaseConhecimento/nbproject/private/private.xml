@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/rafael/Dados%20Compartilhados/GitHub/Inteligencia-Artificial/Base%20de%20Conhecimento/BaseConhecimento/src/baseconhecimento/Antecedente.java</file>
+            <file>file:/media/rafael/Dados%20Compartilhados/GitHub/Inteligencia-Artificial/Base%20de%20Conhecimento/BaseConhecimento/src/ambiente/MemoriaTrabalho.java</file>
+            <file>file:/media/rafael/Dados%20Compartilhados/GitHub/Inteligencia-Artificial/Base%20de%20Conhecimento/BaseConhecimento/src/motor/MotorInferencia.java</file>
+            <file>file:/media/rafael/Dados%20Compartilhados/GitHub/Inteligencia-Artificial/Base%20de%20Conhecimento/BaseConhecimento/test/instancias/Inicial.java</file>
+            <file>file:/media/rafael/Dados%20Compartilhados/GitHub/Inteligencia-Artificial/Base%20de%20Conhecimento/BaseConhecimento/src/ambiente/Execucao.java</file>
+            <file>file:/media/rafael/Dados%20Compartilhados/GitHub/Inteligencia-Artificial/Base%20de%20Conhecimento/BaseConhecimento/test/instancias/AeBcompletos.java</file>
+            <file>file:/media/rafael/Dados%20Compartilhados/GitHub/Inteligencia-Artificial/Base%20de%20Conhecimento/BaseConhecimento/test/instancias/MotorSimples.java</file>
+            <file>file:/media/rafael/Dados%20Compartilhados/GitHub/Inteligencia-Artificial/Base%20de%20Conhecimento/BaseConhecimento/src/baseconhecimento/Valor.java</file>
         </group>
     </open-files>
 </project-private>
