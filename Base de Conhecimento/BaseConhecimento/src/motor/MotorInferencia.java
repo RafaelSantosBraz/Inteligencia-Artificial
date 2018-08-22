@@ -84,7 +84,7 @@ public class MotorInferencia {
                 this.ambiente.getMemoTrab(t.getVariavel()).addValor(t.getValor());
             });
         } else {
-            this.execucoes.get(this.execucoes.indexOf(exe)).setResultado(true);
+            this.execucoes.get(this.execucoes.indexOf(exe)).setResultado(false);
         }
     }
 
