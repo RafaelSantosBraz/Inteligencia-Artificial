@@ -667,6 +667,6 @@ public class Pizza {
                 b.getVariavel("restricao_derivadosLeite").getValor("não")
         );       
         MotorInferencia m = new MotorInferencia(a);
-        // m.executar();
+        m.executar();
     }
 }

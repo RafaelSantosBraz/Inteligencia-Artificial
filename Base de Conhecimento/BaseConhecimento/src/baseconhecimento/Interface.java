@@ -59,7 +59,7 @@ public class Interface {
         System.out.println("Pergunta: " + this.pergunta);
         System.out.println("Motivo: " + this.motivo);
         System.out.println("Valores possíveis: ");
-        Scanner s = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);        
         if (this.variavel.getTipo().getNumerico()) {
             aux.add(new Valor(s.nextDouble()));
         } else {
@@ -76,7 +76,6 @@ public class Interface {
                 aux.add(this.variavel.getValor(s.next()));
             }
         }
-        s.close();
         return aux;
     }
 }
