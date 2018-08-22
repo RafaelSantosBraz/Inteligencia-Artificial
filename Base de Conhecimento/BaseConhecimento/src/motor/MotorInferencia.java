@@ -9,6 +9,7 @@ import ambiente.*;
 import baseconhecimento.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 /**
@@ -20,6 +21,7 @@ public class MotorInferencia {
     private final Ambiente ambiente;
     private List<Variavel> objetivos;
     private List<Regra> regrasObjetivo;
+    private Stack<Execucao> execucoes;
 
     public MotorInferencia(Ambiente ambiente) {
         (this.ambiente = ambiente).getBase().getVariaveis().forEach((t) -> {
@@ -39,7 +41,12 @@ public class MotorInferencia {
         return regrasObjetivo;
     }
 
+    public Stack<Execucao> getExecucoes() {
+        return execucoes;
+    }
+
     public void executar() {
+        this.execucoes = new Stack<>();
         // identificar objetivos        
         this.objetivos = ambiente.getBase().getVarObjetivo();
         // regras que tem o objetivo
@@ -58,6 +65,8 @@ public class MotorInferencia {
     }
 
     private void calcularAntecedentes(Regra regra) {
+        Execucao exe = new Execucao(this.execucoes.isEmpty() ? 1 : this.execucoes.lastElement().getOrdem() + 1, regra);
+        this.execucoes.push(exe);
         regra.getAntecedentes().forEach((t) -> {
             List<Regra> aux = listarDefinicoes(t.getVariavel());
             MemoriaTrabalho memo = this.ambiente.getMemoTrab(t.getVariavel());
@@ -70,9 +79,12 @@ public class MotorInferencia {
             }
         });
         if (aplicarAntecedentes(regra)) {
+            this.execucoes.get(this.execucoes.indexOf(exe)).setResultado(true);
             regra.getConsequentes().forEach((t) -> {
                 this.ambiente.getMemoTrab(t.getVariavel()).addValor(t.getValor());
             });
+        } else {
+            this.execucoes.get(this.execucoes.indexOf(exe)).setResultado(true);
         }
     }
 
@@ -129,4 +141,13 @@ public class MotorInferencia {
         return aux;
     }
 
+    public void imprimirPilha() {
+        System.out.println("Execuções:\n");
+        while (!this.execucoes.empty()) {
+            Execucao a = this.execucoes.pop();
+            System.out.println(a.getRegra().getIdentificador());
+            System.out.println(a.getOrdem());
+            System.out.println(a.getResultado() + "\n");
+        }
+    }
 }

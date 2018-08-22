@@ -665,8 +665,11 @@ public class Pizza {
         b.getRegra("nao_restricao_derivadosLeite").criarConsequente(
                 b.getVariavel("restricao_derivadosLeite"),
                 b.getVariavel("restricao_derivadosLeite").getValor("não")
-        );       
+        );    
+        
         MotorInferencia m = new MotorInferencia(a);
         m.executar();
+        m.imprimirPilha();
+        
     }
 }
