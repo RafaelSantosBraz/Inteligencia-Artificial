@@ -13,20 +13,19 @@ cab     : tipos pesos ident
 ident   : (STR SEP)+ EOL
         ;
 
-tipos   : (INT SEP)+ EOL
+tipos   : (NUM SEP)+ EOL
         ;
 
-pesos   : (INT SEP)+ EOL
+pesos   : (NUM SEP)+ EOL
         ;
 
 valores : (valor SEP)+ EOL
         ;
 
-valor   : NUM SEP     #valorNum
-        | STR SEP     #valorStr
+valor   : NUM     #valorNum
+        | STR     #valorStr
         ;
 
-INT     : [0-9]+;
 NUM     : '-'?[0-9]+('.'[0-9]+)?;
 EOL     : '\r'?'\n';
 SEP     : ';';

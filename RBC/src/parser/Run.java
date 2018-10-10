@@ -51,7 +51,7 @@ public class Run {
         JPanel panel = new JPanel();
         TreeViewer viewr = new TreeViewer(Arrays.asList(
                 parser.getRuleNames()), tree);
-        viewr.setScale(1);
+        viewr.setScale(0.75);
         panel.add(viewr);
         frame.add(panel);
         frame.setSize(1000, 600);
