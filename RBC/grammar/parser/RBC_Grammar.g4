@@ -4,35 +4,35 @@ grammar RBC_Grammar;
     package parser;
 }
 
-base    : cab (valores)+
+base    : head (values)+
         ;
 
-cab     : tipos pesos ident
+head    : types weights ident
         ;
 
-ident   : (STR SEP)+ EOL
+ident   : (STR)+ EOL
         ;
 
-tipos   : (NUM SEP)+ EOL
+types   : (NUM)+ EOL
         ;
 
-pesos   : (NUM SEP)+ EOL
+weights : (NUM)+ EOL
         ;
 
-valores : id objetivo (valor SEP)+ EOL
+values  : id goal (value)+ EOL
         ;
 
-id      : NUM SEP
+id      : NUM
         ;
 
-objetivo: valor SEP
+goal    : value
         ;
 
-valor   : NUM     #valorNum
+value   : NUM     #valorNum
         | STR     #valorStr
         ;
 
 NUM     : '-'?[0-9]+('.'[0-9]+)?;
 EOL     : '\r'?'\n';
-SEP     : ';';
+SEP     : ';' -> skip;
 STR     : (~["\\\r\n;])+;
