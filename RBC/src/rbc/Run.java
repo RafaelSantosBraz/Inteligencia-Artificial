@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parser;
+package rbc;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
@@ -17,6 +17,8 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import parser.RBC_GrammarLexer;
+import parser.RBC_GrammarParser;
         
 /**
  *

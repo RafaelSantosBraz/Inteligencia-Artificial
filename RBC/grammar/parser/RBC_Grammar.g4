@@ -1,7 +1,7 @@
 grammar RBC_Grammar;
 
 @header{
-package parser;
+    package parser;
 }
 
 base    : cab (valores)+
@@ -19,7 +19,13 @@ tipos   : (NUM SEP)+ EOL
 pesos   : (NUM SEP)+ EOL
         ;
 
-valores : (valor SEP)+ EOL
+valores : id objetivo (valor SEP)+ EOL
+        ;
+
+id      : NUM SEP
+        ;
+
+objetivo: valor SEP
         ;
 
 valor   : NUM     #valorNum
