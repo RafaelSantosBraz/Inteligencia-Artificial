@@ -9,8 +9,6 @@ package parser;
  *
  * @author rafael
  */
-public class BaseVisitor extends RBC_GrammarBaseVisitor<Object>{
+public class BaseVisitor extends RBC_GrammarBaseVisitor<Object> {
 
-    
-    
 }

@@ -6,7 +6,6 @@
 package parser;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Esta classe implementa a tabela de simbolos e utiliza o padrão de projetos
