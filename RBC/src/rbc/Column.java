@@ -5,6 +5,9 @@
  */
 package rbc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author rafael
@@ -14,11 +17,13 @@ public class Column {
     private final String name;
     private final Integer mathType;
     private final Integer weight;
-
+    private final List<Object> possibleValues;
+    
     public Column(String name, Integer mathType, Integer weight) {
         this.name = name;
         this.mathType = mathType;
         this.weight = weight;
+        possibleValues = new ArrayList<>();
     }
 
     public String getName() {
@@ -32,5 +37,12 @@ public class Column {
     public Integer getWeight() {
         return weight;
     }
+
+    public List<Object> getPossibleValues() {
+        return possibleValues;
+    }
     
+    public Boolean addPossibleValue(Object value){
+        return possibleValues.add(value);
+    }
 }

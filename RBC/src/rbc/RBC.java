@@ -27,6 +27,7 @@ public class RBC {
 
     private final List<Column> columns;
     private final List<Case> cases;
+    private Case baseCase;
 
     public RBC() {
         columns = new ArrayList<>();
@@ -44,8 +45,17 @@ public class RBC {
     public Boolean addColumn(Column column) {
         return columns.add(column);
     }
-    
-    public Boolean addCase(Case ccase){
+
+    public Boolean addCase(Case ccase) {
         return cases.add(ccase);
     }
+
+    public Case getBaseCase() {
+        return baseCase;
+    }
+
+    public void setBaseCase(Case baseCase) {
+        this.baseCase = baseCase;
+    }
+
 }

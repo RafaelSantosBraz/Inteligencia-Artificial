@@ -37,10 +37,11 @@ public class Value {
     }
 
     public Double getLocalSimilarity() {
+        localSimilarityCalculation();
         return localSimilarity;
     }
 
-    public void localSimilarityCalculation(Case baseCase) {
+    private void localSimilarityCalculation() {
 
     }
 

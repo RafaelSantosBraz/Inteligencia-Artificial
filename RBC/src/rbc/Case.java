@@ -14,14 +14,18 @@ import java.util.List;
  */
 public class Case {
 
-    private final Integer id;
-    private final Object goal;
+    private Integer id;
+    private Object goal;
     private final List<Value> values;
     private Double globalSimilarity;
 
     public Case(Integer id, Object goal) {
         this.id = id;
         this.goal = goal;
+        values = new ArrayList<>();
+    }
+
+    public Case() {
         values = new ArrayList<>();
     }
 
@@ -33,6 +37,14 @@ public class Case {
         return goal;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setGoal(Object goal) {
+        this.goal = goal;
+    }
+
     public List<Value> getValues() {
         return values;
     }
@@ -42,10 +54,11 @@ public class Case {
     }
 
     public Double getGlobalSimilarity() {
+        globalSimilarityCalculation();
         return globalSimilarity;
     }
 
-    public void globalSimilarityCalculation(Case baseCase) {
+    private void globalSimilarityCalculation() {
         Integer weights = 0;
         globalSimilarity = 0.0;
         for (Value t : values) {
