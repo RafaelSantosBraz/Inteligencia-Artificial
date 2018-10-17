@@ -19,17 +19,14 @@ types   : (NUM)+ EOL
 weights : (NUM)+ EOL
         ;
 
-values  : id goal (value)+ EOL
-        ;
-
-id      : NUM
+values  : NUM goal (value)+ EOL
         ;
 
 goal    : value
         ;
 
-value   : NUM     #valorNum
-        | STR     #valorStr
+value   : NUM     #valueNum
+        | STR     #valueStr
         ;
 
 NUM     : '-'?[0-9]+('.'[0-9]+)?;

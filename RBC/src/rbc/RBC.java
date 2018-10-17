@@ -26,16 +26,26 @@ public class RBC {
     //</editor-fold>
 
     private final List<Column> columns;
+    private final List<Case> cases;
 
     public RBC() {
         columns = new ArrayList<>();
+        cases = new ArrayList<>();
     }
 
     public List<Column> getColumns() {
         return columns;
     }
-    
-    public Boolean addColumn(Column column){
+
+    public List<Case> getCases() {
+        return cases;
+    }
+
+    public Boolean addColumn(Column column) {
         return columns.add(column);
+    }
+    
+    public Boolean addCase(Case ccase){
+        return cases.add(ccase);
     }
 }

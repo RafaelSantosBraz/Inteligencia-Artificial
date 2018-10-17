@@ -11,5 +11,16 @@ package parser;
  * @author rafael
  */
 public class Util {
-    
+
+    public static Number stringNumberConvertion(String n) {
+        try {
+            return Integer.parseInt(n);
+        } catch (NumberFormatException e) {
+            try {
+                return Double.parseDouble(n);
+            } catch (NumberFormatException f) {
+                return null;
+            }
+        }
+    }
 }

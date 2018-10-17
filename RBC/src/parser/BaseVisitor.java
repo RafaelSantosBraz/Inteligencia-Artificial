@@ -18,8 +18,8 @@ public class BaseVisitor extends RBC_GrammarBaseVisitor<Object> {
     public Object visitHead(RBC_GrammarParser.HeadContext ctx) {
         ArrayList<Integer> types = (ArrayList<Integer>) visit(ctx.types());
         ArrayList<Integer> weights = (ArrayList<Integer>) visit(ctx.weights());
-        ArrayList<String> names = (ArrayList<String>) visit(ctx.ident());        
-        for (int i = 0; i < types.size(); i++){
+        ArrayList<String> names = (ArrayList<String>) visit(ctx.ident());
+        for (int i = 0; i < types.size(); i++) {
             RBC.getInstance().addColumn(new Column(names.get(i), types.get(i), weights.get(i)));
         }
         return null;
@@ -51,7 +51,25 @@ public class BaseVisitor extends RBC_GrammarBaseVisitor<Object> {
         });
         return names;
     }
-    
-    
-    
+
+    @Override
+    public Object visitValues(RBC_GrammarParser.ValuesContext ctx) {
+        Case ccase = new Case(Integer.parseInt(ctx.NUM().getText()), visit(ctx.goal()));
+        RBC.getInstance().addCase(ccase);
+        for (int i = 0; i < ctx.value().size(); i++) {
+            ccase.addValue(new Value(RBC.getInstance().getColumns().get(i), visit(ctx.value(i))));
+        }
+        return null;
+    }
+
+    @Override
+    public Object visitValueStr(RBC_GrammarParser.ValueStrContext ctx) {
+        return ctx.STR().getText();
+    }
+
+    @Override
+    public Object visitValueNum(RBC_GrammarParser.ValueNumContext ctx) {
+        return Util.stringNumberConvertion(ctx.NUM().getText());
+    }
+
 }
