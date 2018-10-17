@@ -14,37 +14,29 @@ import java.util.List;
  */
 public class Case {
 
-    private int id;
-    private Object goal;
-    private List<Object> values;
-    
-    public Case(){
+    private final Integer id;
+    private final Object goal;
+    private final List<Value> values;
+
+    public Case(Integer id, Object goal) {
+        this.id = id;
+        this.goal = goal;
         values = new ArrayList<>();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Object getGoal() {
         return goal;
     }
 
-    public void setGoal(Object goal) {
-        this.goal = goal;
-    }
-
-    public List<Object> getValues() {
+    public List<Value> getValues() {
         return values;
     }
 
-    public void setValues(List<Object> values) {
-        this.values = values;
+    public Boolean addValue(Value value) {
+        return values.add(value);
     }
-    
-    
 }

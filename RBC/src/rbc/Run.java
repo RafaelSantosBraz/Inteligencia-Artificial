@@ -17,9 +17,8 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import parser.RBC_GrammarLexer;
-import parser.RBC_GrammarParser;
-        
+import parser.*;
+
 /**
  *
  * @author rafael
@@ -37,11 +36,14 @@ public class Run {
         } else {
             stream = new ANTLRInputStream(System.in);
         }
-        RBC_GrammarLexer lexer= new RBC_GrammarLexer(stream);            //Lexer
+        RBC_GrammarLexer lexer = new RBC_GrammarLexer(stream);            //Lexer
         TokenStream tokens = new CommonTokenStream(lexer);  //nextToken 
         RBC_GrammarParser parser = new RBC_GrammarParser(tokens);         //Parser
         RBC_GrammarParser.BaseContext base
                 = parser.base();        //Exec Parser prog
+        BaseVisitor bv = new BaseVisitor();
+        bv.visit(base);
+        RBC test = RBC.getInstance();
         showParseTreeFrame(base, parser);
         //System.out.println(SymbolTable.getInstance().dumpTable());
         //MyProgVisitor pv = new MyProgVisitor();

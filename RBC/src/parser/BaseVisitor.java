@@ -5,10 +5,53 @@
  */
 package parser;
 
+import java.util.ArrayList;
+import rbc.*;
+
 /**
  *
  * @author rafael
  */
 public class BaseVisitor extends RBC_GrammarBaseVisitor<Object> {
 
+    @Override
+    public Object visitHead(RBC_GrammarParser.HeadContext ctx) {
+        ArrayList<Integer> types = (ArrayList<Integer>) visit(ctx.types());
+        ArrayList<Integer> weights = (ArrayList<Integer>) visit(ctx.weights());
+        ArrayList<String> names = (ArrayList<String>) visit(ctx.ident());        
+        for (int i = 0; i < types.size(); i++){
+            RBC.getInstance().addColumn(new Column(names.get(i), types.get(i), weights.get(i)));
+        }
+        return null;
+    }
+
+    @Override
+    public Object visitTypes(RBC_GrammarParser.TypesContext ctx) {
+        ArrayList<Integer> types = new ArrayList<>();
+        ctx.NUM().forEach((t) -> {
+            types.add(Integer.parseInt(t.getText()));
+        });
+        return types;
+    }
+
+    @Override
+    public Object visitWeights(RBC_GrammarParser.WeightsContext ctx) {
+        ArrayList<Integer> weights = new ArrayList<>();
+        ctx.NUM().forEach((t) -> {
+            weights.add(Integer.parseInt(t.getText()));
+        });
+        return weights;
+    }
+
+    @Override
+    public Object visitIdent(RBC_GrammarParser.IdentContext ctx) {
+        ArrayList<String> names = new ArrayList<>();
+        ctx.STR().forEach((t) -> {
+            names.add(t.getText());
+        });
+        return names;
+    }
+    
+    
+    
 }
