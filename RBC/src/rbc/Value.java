@@ -13,6 +13,7 @@ public class Value {
 
     private final Column column;
     private Object value;
+    private Double localSimilarity;
 
     public Value(Column column, Object value) {
         this.column = column;
@@ -33,6 +34,14 @@ public class Value {
 
     public Column getColumn() {
         return column;
+    }
+
+    public Double getLocalSimilarity() {
+        return localSimilarity;
+    }
+
+    public void localSimilarityCalculation(Case baseCase) {
+
     }
 
 }

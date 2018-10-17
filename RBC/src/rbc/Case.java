@@ -17,6 +17,7 @@ public class Case {
     private final Integer id;
     private final Object goal;
     private final List<Value> values;
+    private Double globalSimilarity;
 
     public Case(Integer id, Object goal) {
         this.id = id;
@@ -39,4 +40,19 @@ public class Case {
     public Boolean addValue(Value value) {
         return values.add(value);
     }
+
+    public Double getGlobalSimilarity() {
+        return globalSimilarity;
+    }
+
+    public void globalSimilarityCalculation(Case baseCase) {
+        Integer weights = 0;
+        globalSimilarity = 0.0;
+        for (Value t : values) {
+            globalSimilarity += (t.getLocalSimilarity() * t.getColumn().getWeight());
+            weights += t.getColumn().getWeight();
+        }
+        globalSimilarity /= weights.doubleValue();
+    }
+
 }
