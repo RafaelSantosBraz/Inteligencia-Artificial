@@ -6,7 +6,7 @@
 package parser;
 
 /**
- * FACADE?
+ *
  *
  * @author rafael
  */

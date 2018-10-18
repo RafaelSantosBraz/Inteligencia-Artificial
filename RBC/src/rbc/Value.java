@@ -42,7 +42,37 @@ public class Value {
     }
 
     private void localSimilarityCalculation() {
-
+        Object baseValue = RBC.getInstance().getBaseCase().getValues().get(RBC.getInstance().getColumns().indexOf(column)).value;
+        Integer mathType = column.getMathType();
+        switch (mathType) {
+            case 0:
+                localSimilarity = numericalDifference(baseValue);
+                break;
+            case 1:
+                localSimilarity = booleanDifference(baseValue);
+                break;
+            case 2:
+                localSimilarity = positionDifference(baseValue);
+                break;
+            case 3:
+                localSimilarity = circularDifference(baseValue);
+                break;
+        }
     }
 
+    private Double numericalDifference(Object base) {
+        return 0.0;
+    }
+
+    private Double booleanDifference(Object base) {
+        return 0.0;
+    }
+
+    private Double positionDifference(Object base) {
+        return 0.0;
+    }
+
+    private Double circularDifference(Object base) {
+        return 0.0;
+    }
 }

@@ -64,6 +64,9 @@ public class BaseVisitor extends RBC_GrammarBaseVisitor<Object> {
 
     @Override
     public Object visitValueStr(RBC_GrammarParser.ValueStrContext ctx) {
+        if (ctx.STR().getText().equals("?")) {
+            return null;
+        }
         return ctx.STR().getText();
     }
 
