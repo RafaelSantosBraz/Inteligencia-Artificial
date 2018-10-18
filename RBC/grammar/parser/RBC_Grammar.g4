@@ -7,7 +7,10 @@ grammar RBC_Grammar;
 base    : head (values)+
         ;
 
-head    : types weights ident
+head    : types weights ident (stand)*
+        ;
+
+stand   : DEF STR (value)+ EOL
         ;
 
 ident   : (STR)+ EOL
@@ -29,6 +32,7 @@ value   : NUM     #valueNum
         | STR     #valueStr
         ;
 
+DEF     : '#';
 NUM     : '-'?[0-9]+('.'[0-9]+)?;
 EOL     : '\r'?'\n';
 SEP     : ';' -> skip;
