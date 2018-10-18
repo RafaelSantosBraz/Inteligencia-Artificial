@@ -5,6 +5,8 @@
  */
 package rbc;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author rafael
@@ -43,6 +45,7 @@ public class Value {
 
     private void localSimilarityCalculation() {
         Object baseValue = RBC.getInstance().getBaseCase().getValues().get(RBC.getInstance().getColumns().indexOf(column)).value;
+        ArrayList<Object> possibleValues = (ArrayList<Object>) RBC.getInstance().getColumns().get(RBC.getInstance().getColumns().indexOf(column)).getPossibleValues();
         Integer mathType = column.getMathType();
         switch (mathType) {
             case 0:
@@ -52,10 +55,10 @@ public class Value {
                 localSimilarity = booleanDifference(baseValue);
                 break;
             case 2:
-                localSimilarity = positionDifference(baseValue);
+                localSimilarity = positionDifference(baseValue, possibleValues);
                 break;
             case 3:
-                localSimilarity = circularDifference(baseValue);
+                localSimilarity = circularDifference(baseValue, possibleValues);
                 break;
         }
     }
@@ -68,11 +71,19 @@ public class Value {
         return 0.0;
     }
 
-    private Double positionDifference(Object base) {
+    private Double positionDifference(Object base, ArrayList<Object> possibleValues) {
         return 0.0;
     }
 
-    private Double circularDifference(Object base) {
+    private Double circularDifference(Object base, ArrayList<Object> possibleValues) {
         return 0.0;
     }
+    
+    private Double basicCalculation(Double cP, Double cN, Double vMax, Double vMin) {      
+        return basicCalculation(cP - cN, vMax - vMin);
+    }
+    
+    private Double basicCalculation(Double cPN, Double vMaxMin) {      
+        return 1.0 - (Math.abs(cPN) / vMaxMin);
+    }    
 }
