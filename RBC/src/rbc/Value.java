@@ -6,6 +6,7 @@
 package rbc;
 
 import java.util.ArrayList;
+import parser.Util;
 
 /**
  *
@@ -64,26 +65,37 @@ public class Value {
     }
 
     private Double numericalDifference(Object base) {
-        return 0.0;
+        return basicCalculation(((Number) base).doubleValue(), ((Number) value).doubleValue(), ((Number) column.getPossibleValues().get(1)).doubleValue(), ((Number) column.getPossibleValues().get(0)).doubleValue());
     }
 
     private Double booleanDifference(Object base) {
-        return 0.0;
+        if (base == null || value == null) {
+            return 0.0;
+        }
+        return base.equals(value) ? 1.0 : 0.0;
     }
 
     private Double positionDifference(Object base, ArrayList<Object> possibleValues) {
-        return 0.0;
+        Integer posBase = Util.findInList(possibleValues, base);
+        Integer posCase = Util.findInList(possibleValues, value);
+        if (posBase == null || posCase == null) {
+            return 0.0;
+        }
+        return basicCalculation(posBase.doubleValue(), posCase.doubleValue(), (possibleValues.size() - 1), 0);
     }
 
     private Double circularDifference(Object base, ArrayList<Object> possibleValues) {
-        return 0.0;
+        if (Util.findInList(possibleValues, base) == null || Util.findInList(possibleValues, value) == null) {
+            return 0.0;
+        }
+        return basicCalculation(Util.DistanceInList(possibleValues, base, value).doubleValue(), (possibleValues.size() - 1));
     }
-    
-    private Double basicCalculation(Double cP, Double cN, Double vMax, Double vMin) {      
+
+    private Double basicCalculation(Double cP, Double cN, Double vMax, Double vMin) {
         return basicCalculation(cP - cN, vMax - vMin);
     }
-    
-    private Double basicCalculation(Double cPN, Double vMaxMin) {      
+
+    private Double basicCalculation(Double cPN, Double vMaxMin) {
         return 1.0 - (Math.abs(cPN) / vMaxMin);
-    }    
+    }
 }
