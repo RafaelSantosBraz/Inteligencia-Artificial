@@ -81,14 +81,14 @@ public class Value {
         if (posBase == null || posCase == null) {
             return 0.0;
         }
-        return basicCalculation(posBase.doubleValue(), posCase.doubleValue(), (possibleValues.size() - 1), 0);
+        return basicCalculation(posBase.doubleValue(), posCase.doubleValue(), ((Integer)(possibleValues.size() - 1)).doubleValue(), 0.0);
     }
 
     private Double circularDifference(Object base, ArrayList<Object> possibleValues) {
         if (Util.findInList(possibleValues, base) == null || Util.findInList(possibleValues, value) == null) {
             return 0.0;
         }
-        return basicCalculation(Util.DistanceInList(possibleValues, base, value).doubleValue(), (possibleValues.size() - 1));
+        return basicCalculation(Util.DistanceInList(possibleValues, base, value).doubleValue(), ((Integer)(possibleValues.size() - 1)).doubleValue());
     }
 
     private Double basicCalculation(Double cP, Double cN, Double vMax, Double vMin) {
