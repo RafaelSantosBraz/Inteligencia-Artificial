@@ -5,9 +5,17 @@
  */
 package controller;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Label;
 import java.util.ArrayList;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import parser.Util;
@@ -30,22 +38,22 @@ public class CDataCollector {
     }
 
     private void setCollumsData() {
-        ArrayList<Column> columns = (ArrayList<Column>) RBC.getInstance().getColumns();
-        form.jTable1.setModel(getTableModel());
-        String names[] = RBC.getInstance().getColumnNames();
-        for (int c = 0; c < columns.size(); c++) {
-            form.jTable1.setValueAt(names[c], c, 0);
-        }
-        for (int c = 0; c < columns.size(); c++) {
-            Object editor = Util.defineTableObject(columns.get(c));
-            if (editor != null) {
-                form.jTable1.setCellEditor(new DefaultCellEditor((JComboBox) editor));
+        RBC.getInstance().getColumns().forEach((t) -> {
+            JPanel panel = new JPanel();  
+            panel.setPreferredSize(new Dimension(form.getWidth()-100, 50));
+            form.jPanel1.add(panel);
+            panel.add(Util.createLabel(t.getName()));
+            if (t.getMathType() == 0) {
+                panel.add(Util.createTextField());
+            } else {
+                panel.add(Util.createComboBox(t));
             }
-        }
-    }
-
-    private TableModel getTableModel() {
-        String names[] = {"Atributos", "Valores"};
-        return new DefaultTableModel(names, RBC.getInstance().getColumns().size());
-    }
+            panel.setLayout(new GridLayout(2, 2));
+            panel.doLayout();
+            panel.repaint();
+        });        
+        form.jPanel1.setLayout(new FlowLayout(1));
+        form.jPanel1.doLayout();
+        form.jPanel1.repaint();
+    }   
 }

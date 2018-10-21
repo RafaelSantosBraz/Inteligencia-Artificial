@@ -5,15 +5,19 @@
  */
 package parser;
 
+import java.awt.Dimension;
 import java.awt.HeadlessException;
+import java.awt.Label;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import org.antlr.v4.gui.TreeViewer;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CharStream;
@@ -105,15 +109,22 @@ public class Util {
         }
     }
 
-    public static Object defineTableObject(Column column) {
-        if (column.getMathType() == 0){
-            return null;
-        }
-        JComboBox comboBox = new JComboBox();
-        column.getPossibleValues().forEach((t) -> {
-            comboBox.addItem(t);
-        });
-        comboBox.addItem("?");
-        return comboBox;
+    public static JTextField createTextField() {
+        JTextField t = new JTextField();        
+        t.setPreferredSize(new Dimension(100, 30));        
+        return t;
+    }
+
+    public static JComboBox createComboBox(Column column) {
+        Object items[] = column.getPossibleValues().toArray();
+        JComboBox j = new JComboBox(items);
+        j.addItem("?");
+        j.setSelectedIndex(-1);
+        return j;
+    }
+    
+    public static Label createLabel(String text){
+        Label l = new Label(text + ':');           
+        return l;
     }
 }

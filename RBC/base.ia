@@ -1,8 +1,10 @@
-0;0;
-1;1;
-Entrada1;Entrada2;
-#;Entrada2;0;1;
-0;1;1;1;
-1;0;0;1;
-2;0;1;0;
-3;0;0;0;
+3;0;1;2;2;0;
+4;4;2;2;3;3;
+Estação do Ano;Tamanho da Folha;Mancha;Cor das Folhas;Vento;Infestação/100;
+#;Estação do Ano;Inverno;Primavera;verão;Outono;
+#;Tamanho da Folha;2.00;5.00;
+#;Mancha;Sim;Não;
+#;Cor das Folhas;Preta;Marrom;Vermelha;Amarela;Branca;
+#;Vento;Fraco;Médio Fraco;Médio;Médio Forte;Forte;
+#;Infestação/100;0;100;
+1;A;Verão;3.50;Não;Vermelha;Fraco;40;
