@@ -5,6 +5,7 @@
  */
 package rbc;
 
+import controller.CDataCollector;
 import java.io.IOException;
 import parser.*;
 
@@ -15,7 +16,8 @@ import parser.*;
 public class Run {
 
     public static void main(String[] args) throws IOException {
-        Util.readBaseFile("base.ia", Boolean.TRUE);
+        Util.readBaseFile("base.ia", Boolean.FALSE);
+        controller.CDataCollector c = new CDataCollector();
     }
 
 }

@@ -68,4 +68,13 @@ public class Case {
         globalSimilarity /= weights.doubleValue();
     }
 
+    @Override
+    public String toString() {
+        String vals = "";
+        for (Value t: this.values){
+            vals += t.getValue();
+        }
+        return id + ";" + goal + ";" + vals;
+    }
+
 }

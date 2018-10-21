@@ -6,9 +6,12 @@
 package parser;
 
 import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.antlr.v4.gui.TreeViewer;
@@ -17,6 +20,8 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import rbc.Column;
+import rbc.RBC;
 
 /**
  *
@@ -80,7 +85,7 @@ public class Util {
         }
     }
 
-    private static void showParseTreeFrame(ParseTree tree, RBC_GrammarParser parser) throws HeadlessException {
+    public static void showParseTreeFrame(ParseTree tree, RBC_GrammarParser parser) throws HeadlessException {
         JFrame frame = new JFrame("SRC: " + tree.getText());
         JPanel panel = new JPanel();
         TreeViewer viewr = new TreeViewer(Arrays.asList(
@@ -92,5 +97,23 @@ public class Util {
         frame.setState(JFrame.MAXIMIZED_HORIZ);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+    }
+
+    public static void saveBaseCaseInFile(String fileName) throws IOException {
+        try (FileWriter base = new FileWriter(fileName)) {
+            base.append(RBC.getInstance().getBaseCase().toString() + '\n');
+        }
+    }
+
+    public static Object defineTableObject(Column column) {
+        if (column.getMathType() == 0){
+            return null;
+        }
+        JComboBox comboBox = new JComboBox();
+        column.getPossibleValues().forEach((t) -> {
+            comboBox.addItem(t);
+        });
+        comboBox.addItem("?");
+        return comboBox;
     }
 }

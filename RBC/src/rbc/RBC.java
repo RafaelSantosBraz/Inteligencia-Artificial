@@ -58,4 +58,11 @@ public class RBC {
         this.baseCase = baseCase;
     }
 
+    public String[] getColumnNames() {
+        String names[] = new String[columns.size()];
+        for (int c = 0; c < columns.size(); c++) {
+            names[c] = columns.get(c).getName();
+        }
+        return names;
+    }
 }
