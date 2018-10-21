@@ -5,7 +5,18 @@
  */
 package parser;
 
+import java.awt.HeadlessException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import org.antlr.v4.gui.TreeViewer;
+import org.antlr.v4.runtime.ANTLRFileStream;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  *
@@ -42,17 +53,44 @@ public class Util {
         Integer posLF = newList.indexOf(last);
         Integer distance1 = posFF - posLF;
         Integer distance2 = posFL - posLF;
-        if (distance1 < distance2){
+        if (distance1 < distance2) {
             return distance1;
         }
         return distance2;
     }
-    
-    public static ArrayList<Object> concatenateList (ArrayList<Object> list){
+
+    public static ArrayList<Object> concatenateList(ArrayList<Object> list) {
         ArrayList<Object> result = (ArrayList<Object>) list.clone();
         list.forEach((t) -> {
             result.add(t);
         });
         return result;
+    }
+
+    public static void readBaseFile(String fileName, Boolean showTree) throws IOException {
+        CharStream stream = new ANTLRFileStream(fileName);
+        RBC_GrammarLexer lexer = new RBC_GrammarLexer(stream);
+        TokenStream tokens = new CommonTokenStream(lexer);
+        RBC_GrammarParser parser = new RBC_GrammarParser(tokens);
+        RBC_GrammarParser.BaseContext base = parser.base();
+        BaseVisitor bv = new BaseVisitor();
+        bv.visit(base);
+        if (showTree) {
+            showParseTreeFrame(base, parser);
+        }
+    }
+
+    private static void showParseTreeFrame(ParseTree tree, RBC_GrammarParser parser) throws HeadlessException {
+        JFrame frame = new JFrame("SRC: " + tree.getText());
+        JPanel panel = new JPanel();
+        TreeViewer viewr = new TreeViewer(Arrays.asList(
+                parser.getRuleNames()), tree);
+        viewr.setScale(0.75);
+        panel.add(viewr);
+        frame.add(panel);
+        frame.setSize(1000, 600);
+        frame.setState(JFrame.MAXIMIZED_HORIZ);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
