@@ -92,8 +92,7 @@ public class Util {
     public static void showParseTreeFrame(ParseTree tree, RBC_GrammarParser parser) throws HeadlessException {
         JFrame frame = new JFrame("SRC: " + tree.getText());
         JPanel panel = new JPanel();
-        TreeViewer viewr = new TreeViewer(Arrays.asList(
-                parser.getRuleNames()), tree);
+        TreeViewer viewr = new TreeViewer(Arrays.asList(parser.getRuleNames()), tree);
         viewr.setScale(0.75);
         panel.add(viewr);
         frame.add(panel);
@@ -110,21 +109,20 @@ public class Util {
     }
 
     public static JTextField createTextField() {
-        JTextField t = new JTextField();        
-        t.setPreferredSize(new Dimension(100, 30));        
+        JTextField t = new JTextField();
+        t.setPreferredSize(new Dimension(100, 30));
         return t;
     }
 
     public static JComboBox createComboBox(Column column) {
-        Object items[] = column.getPossibleValues().toArray();
-        JComboBox j = new JComboBox(items);
+        JComboBox j = new JComboBox(column.getPossibleValues().toArray());
         j.addItem("?");
         j.setSelectedIndex(-1);
         return j;
     }
-    
-    public static Label createLabel(String text){
-        Label l = new Label(text + ':');           
+
+    public static Label createLabel(String text) {
+        Label l = new Label(text + ':');
         return l;
     }
 }

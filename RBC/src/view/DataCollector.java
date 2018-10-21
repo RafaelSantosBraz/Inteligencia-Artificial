@@ -69,7 +69,7 @@ public class DataCollector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        
+
     }//GEN-LAST:event_formMouseEntered
 
     /**
