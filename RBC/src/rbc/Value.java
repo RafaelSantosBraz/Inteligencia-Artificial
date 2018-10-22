@@ -65,6 +65,9 @@ public class Value {
     }
 
     private Double numericalDifference(Object base) {
+        if (base == null || value == null){
+            return 0.0;
+        }
         return basicCalculation(((Number) base).doubleValue(), ((Number) value).doubleValue(), ((Number) column.getPossibleValues().get(1)).doubleValue(), ((Number) column.getPossibleValues().get(0)).doubleValue());
     }
 

@@ -135,8 +135,8 @@ public class Util {
             } else {
                 if (t instanceof JTextField) {
                     Object data = ((JTextField) t).getText();
-                    if (data.equals("")) {
-                        result.add("?");
+                    if (data.equals("") || data.equals("?")) {
+                        result.add(null);
                     } else {
                         Number number = stringNumberConvertion(data.toString());
                         if (number == null) {
@@ -147,11 +147,10 @@ public class Util {
                     }
                 } else if (t instanceof JComboBox) {
                     Object data = ((JComboBox) t).getSelectedItem();
-                    if (data == null) {
-                        result.add("?");
-                    } else {
-                        result.add(data);
+                    if (((JComboBox) t).getSelectedIndex() == ((JComboBox) t).getItemCount() - 1) {
+                        result.add(null);
                     }
+                    result.add(data);
                 }
             }
         });

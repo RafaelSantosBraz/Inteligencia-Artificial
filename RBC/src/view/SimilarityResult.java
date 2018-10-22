@@ -5,25 +5,25 @@
  */
 package view;
 
-import controller.CDataCollector;
+import controller.CSimilarityResult;
 
 /**
  *
  * @author rafael
  */
-public class DataCollector extends javax.swing.JFrame {
-    
-    private CDataCollector controller;
-    
+public class SimilarityResult extends javax.swing.JFrame {
+
+    private CSimilarityResult controller;
+
     /**
      * Creates new form First
      */
-    public DataCollector(CDataCollector controller) {
+    public SimilarityResult(CSimilarityResult controller) {
         initComponents();
         this.controller = controller;
     }
-    
-    public DataCollector() {
+
+    public SimilarityResult() {
         initComponents();
     }
 
@@ -39,33 +39,25 @@ public class DataCollector extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Entrada do Caso Problema");
-        setPreferredSize(new java.awt.Dimension(800, 750));
+        setTitle("Resultados da Similaridade");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 formMouseEntered(evt);
             }
         });
 
-        jButton1.setText("CANCELAR");
+        jButton1.setText("ALTERAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("CNF:");
-
-        jTextField1.setName(""); // NOI18N
-        jTextField1.setPreferredSize(new java.awt.Dimension(100, 30));
 
         jButton2.setText("PRÓXIMA");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -79,11 +71,7 @@ public class DataCollector extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(3, 3, 3)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(207, 207, 207)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
@@ -94,8 +82,6 @@ public class DataCollector extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(0, 24, Short.MAX_VALUE))
         );
@@ -155,13 +141,13 @@ public class DataCollector extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseEntered
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controller.renewForm();
+        controller.goBack();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controller.createBaseCase();
-        controller.similarityCalculation();
-        controller.nextStep(jTextField1.getText());
+//        controller.createBaseCase();
+//        controller.similarityCalculation();
+//        controller.nextStep(jTextField1.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -181,21 +167,23 @@ public class DataCollector extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DataCollector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SimilarityResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DataCollector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SimilarityResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DataCollector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SimilarityResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DataCollector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SimilarityResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DataCollector().setVisible(true);
+                new SimilarityResult().setVisible(true);
             }
         });
     }
@@ -203,12 +191,10 @@ public class DataCollector extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel3;
     public javax.swing.JPanel jPanel4;
     public javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

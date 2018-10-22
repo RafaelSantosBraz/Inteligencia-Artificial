@@ -86,6 +86,6 @@ public class CDataCollector {
         }
         form.setVisible(false);
         RBC.getInstance().setCnf(cnf.doubleValue());
-        
+        CSimilarityResult controller = new CSimilarityResult();
     }
 }
