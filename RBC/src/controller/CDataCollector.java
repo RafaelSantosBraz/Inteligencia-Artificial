@@ -37,11 +37,11 @@ public class CDataCollector {
         form.setVisible(true);
     }
 
-    private void setCollumsData() {
+    private void setCollumsData() {       
         RBC.getInstance().getColumns().forEach((t) -> {
             JPanel panel = new JPanel();  
-            panel.setPreferredSize(new Dimension(form.getWidth()-100, 50));
-            form.jPanel1.add(panel);
+            panel.setPreferredSize(new Dimension(form.jPanel4.getWidth()-100, 50));
+            form.jPanel4.add(panel);
             panel.add(Util.createLabel(t.getName()));
             if (t.getMathType() == 0) {
                 panel.add(Util.createTextField());
@@ -51,9 +51,10 @@ public class CDataCollector {
             panel.setLayout(new GridLayout(2, 2));
             panel.doLayout();
             panel.repaint();
-        });        
-        form.jPanel1.setLayout(new FlowLayout(1));
-        form.jPanel1.doLayout();
-        form.jPanel1.repaint();
+        });       
+        form.jPanel4.setPreferredSize(new Dimension(800, RBC.getInstance().getColumns().size() * 65));
+        form.jPanel4.setLayout(new FlowLayout(1));
+        form.jPanel4.doLayout();
+        form.jPanel4.repaint();     
     }   
 }
