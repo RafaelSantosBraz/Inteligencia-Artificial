@@ -7,19 +7,10 @@ package controller;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.util.ArrayList;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneLayout;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import parser.Util;
-import rbc.Column;
 import rbc.RBC;
 import view.DataCollector;
 
@@ -29,10 +20,10 @@ import view.DataCollector;
  */
 public class CDataCollector {
 
-    private final DataCollector form;
+    private DataCollector form;
 
     public CDataCollector() {
-        form = new DataCollector();
+        form = new DataCollector(this);
         setCollumsData();
         form.setVisible(true);
     }
@@ -56,5 +47,19 @@ public class CDataCollector {
         form.jPanel4.setLayout(new FlowLayout(1));
         form.jPanel4.doLayout();
         form.jPanel4.repaint();     
+        form.jPanel3.setLayout(new FlowLayout(1));
+        form.jPanel3.doLayout();
+        form.jPanel3.repaint();    
     }   
+    
+    public void renewForm(){
+        form.dispose();
+        form = new DataCollector(this);
+        setCollumsData();
+        form.setVisible(true);
+    }
+    
+    public void createBaseCase(){
+        ArrayList<Object> values = Util.extractData(form.jPanel4);        
+    }
 }

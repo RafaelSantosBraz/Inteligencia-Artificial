@@ -5,6 +5,7 @@
  */
 package parser;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Label;
@@ -124,5 +125,41 @@ public class Util {
     public static Label createLabel(String text) {
         Label l = new Label(text + ':');
         return l;
+    }
+
+    public static ArrayList<Object> extractData(JPanel container) {
+        ArrayList<Object> result = new ArrayList<>();
+        Arrays.asList(container.getComponents()).forEach((t) -> {
+            if (t instanceof JPanel) {
+                result.addAll(extractData((JPanel) t));
+            } else {
+                if (t instanceof JTextField) {
+                    Object data = ((JTextField) t).getText();
+                    if (data.equals("")) {
+                        result.add("?");
+                    } else {
+                        Number number = stringNumberConvertion(data.toString());
+                        if (number == null) {
+                            result.add(data);
+                        } else {
+                            result.add(number);
+                        }
+                    }
+                } else if (t instanceof JComboBox) {
+                    Object data = ((JComboBox) t).getSelectedItem();
+                    if (data == null) {
+                        result.add("?");
+                    } else {
+                        Number number = stringNumberConvertion(data.toString());
+                        if (number == null) {
+                            result.add(data);
+                        } else {
+                            result.add(number);
+                        }
+                    }
+                }
+            }
+        });
+        return result;
     }
 }
