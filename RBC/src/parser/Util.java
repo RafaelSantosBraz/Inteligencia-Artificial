@@ -150,12 +150,7 @@ public class Util {
                     if (data == null) {
                         result.add("?");
                     } else {
-                        Number number = stringNumberConvertion(data.toString());
-                        if (number == null) {
-                            result.add(data);
-                        } else {
-                            result.add(number);
-                        }
+                        result.add(data);
                     }
                 }
             }

@@ -160,6 +160,8 @@ public class DataCollector extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         controller.createBaseCase();
+        controller.similarityCalculation();
+        controller.nextStep(jTextField1.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

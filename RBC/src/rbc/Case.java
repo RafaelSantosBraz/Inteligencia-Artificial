@@ -68,6 +68,10 @@ public class Case {
         globalSimilarity /= weights.doubleValue();
     }
 
+    public Boolean addValues(ArrayList<Value> values){
+        return this.values.addAll(values);
+    }
+    
     @Override
     public String toString() {
         String vals = "";

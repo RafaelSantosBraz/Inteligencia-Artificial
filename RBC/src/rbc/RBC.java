@@ -28,6 +28,7 @@ public class RBC {
     private final List<Column> columns;
     private final List<Case> cases;
     private Case baseCase;
+    private Double cnf;
 
     public RBC() {
         columns = new ArrayList<>();
@@ -65,4 +66,13 @@ public class RBC {
         }
         return names;
     }
+
+    public Double getCnf() {
+        return cnf;
+    }
+
+    public void setCnf(Double cnf) {
+        this.cnf = cnf;
+    }
+
 }

@@ -11,7 +11,9 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import parser.Util;
+import rbc.Case;
 import rbc.RBC;
+import rbc.Value;
 import view.DataCollector;
 
 /**
@@ -28,10 +30,10 @@ public class CDataCollector {
         form.setVisible(true);
     }
 
-    private void setCollumsData() {       
+    private void setCollumsData() {
         RBC.getInstance().getColumns().forEach((t) -> {
-            JPanel panel = new JPanel();  
-            panel.setPreferredSize(new Dimension(form.jPanel4.getWidth()-100, 50));
+            JPanel panel = new JPanel();
+            panel.setPreferredSize(new Dimension(form.jPanel4.getWidth() - 100, 50));
             form.jPanel4.add(panel);
             panel.add(Util.createLabel(t.getName()));
             if (t.getMathType() == 0) {
@@ -42,24 +44,48 @@ public class CDataCollector {
             panel.setLayout(new GridLayout(2, 2));
             panel.doLayout();
             panel.repaint();
-        });       
+        });
         form.jPanel4.setPreferredSize(new Dimension(800, RBC.getInstance().getColumns().size() * 65));
         form.jPanel4.setLayout(new FlowLayout(1));
         form.jPanel4.doLayout();
-        form.jPanel4.repaint();     
+        form.jPanel4.repaint();
         form.jPanel3.setLayout(new FlowLayout(1));
         form.jPanel3.doLayout();
-        form.jPanel3.repaint();    
-    }   
-    
-    public void renewForm(){
+        form.jPanel3.repaint();
+    }
+
+    public void renewForm() {
         form.dispose();
         form = new DataCollector(this);
         setCollumsData();
         form.setVisible(true);
     }
+
+    public void createBaseCase() {
+        ArrayList<Object> data = Util.extractData(form.jPanel4);
+        ArrayList<Value> values = new ArrayList<>();
+        RBC.getInstance().setBaseCase(new Case(RBC.getInstance().getCases().get(RBC.getInstance().getCases().size() - 1).getId() + 1, null));
+        data.forEach((t) -> {
+            values.add(new Value(RBC.getInstance().getColumns().get(data.indexOf(t)), t));
+        });
+        RBC.getInstance().getBaseCase().addValues(values);
+    }
     
-    public void createBaseCase(){
-        ArrayList<Object> values = Util.extractData(form.jPanel4);        
+    public void similarityCalculation(){
+        RBC.getInstance().getCases().forEach((t) -> {
+            t.getGlobalSimilarity();
+        });
+    }
+    
+    public void nextStep(String textCnf){
+        Number cnf = Util.stringNumberConvertion(textCnf);
+        if (cnf == null){
+            cnf = 0.0;
+        }else{
+            cnf = cnf.doubleValue() / 100.0;
+        }
+        form.setVisible(false);
+        RBC.getInstance().setCnf(cnf.doubleValue());
+        
     }
 }
