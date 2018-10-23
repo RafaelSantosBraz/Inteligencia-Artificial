@@ -17,7 +17,7 @@ public class Run {
 
     public static void main(String[] args) throws IOException {
         Util.readBaseFile("base.ia", Boolean.FALSE);
-        CDataCollector c = new CDataCollector();
+        CDataCollector.getInstance().createForm();
     }
 
 }

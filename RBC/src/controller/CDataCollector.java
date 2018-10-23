@@ -22,14 +22,23 @@ import view.DataCollector;
  */
 public class CDataCollector {
 
-    private DataCollector form;
-
-    public CDataCollector() {
-        form = new DataCollector(this);
-        setCollumsData();
-        form.setVisible(true);
+    //<editor-fold defaultstate="collapsed" desc="SINGLETON">
+    private static CDataCollector instance;
+    
+    public static CDataCollector getInstance() {
+        if (instance == null) {
+            instance = new CDataCollector();
+        }
+        return instance;
     }
+    //</editor-fold>
 
+    private DataCollector form;
+    
+    public CDataCollector() {
+        form = new DataCollector(this);        
+    }
+    
     private void setCollumsData() {
         RBC.getInstance().getColumns().forEach((t) -> {
             JPanel panel = new JPanel();
@@ -53,14 +62,23 @@ public class CDataCollector {
         form.jPanel3.doLayout();
         form.jPanel3.repaint();
     }
-
+    
+    public void createForm() {
+        setCollumsData();
+        form.setVisible(true);
+    }
+    
     public void renewForm() {
         form.dispose();
         form = new DataCollector(this);
         setCollumsData();
         form.setVisible(true);
     }
-
+    
+    public void showForm() {
+        form.setVisible(true);
+    }
+    
     public void createBaseCase() {
         ArrayList<Object> data = Util.extractData(form.jPanel4);
         ArrayList<Value> values = new ArrayList<>();
@@ -71,21 +89,22 @@ public class CDataCollector {
         RBC.getInstance().getBaseCase().addValues(values);
     }
     
-    public void similarityCalculation(){
+    public void similarityCalculation() {
         RBC.getInstance().getCases().forEach((t) -> {
             t.getGlobalSimilarity();
         });
     }
     
-    public void nextStep(String textCnf){
+    public void nextStep(String textCnf) {
         Number cnf = Util.stringNumberConvertion(textCnf);
-        if (cnf == null){
+        if (cnf == null) {
             cnf = 0.0;
-        }else{
+        } else {
             cnf = cnf.doubleValue() / 100.0;
         }
         form.setVisible(false);
         RBC.getInstance().setCnf(cnf.doubleValue());
-        CSimilarityResult controller = new CSimilarityResult();
+        CSimilarityResult.getInstance().createForm();
     }
+    
 }
