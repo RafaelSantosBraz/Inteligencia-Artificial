@@ -53,13 +53,20 @@ public class CSimilarityResult {
     private void setSecondTable() {
         String names[] = {"ID", "Objetivo", "Similaridade"};
         ArrayList<Case> casesByCnf = RBC.getInstance().getCasesByCnf();
-        form.jTable2.setModel(new DefaultTableModel(names, casesByCnf.size()));
-        casesByCnf.forEach((t) -> {
-            form.jTable2.setValueAt(t.getId(), casesByCnf.indexOf(t), 0);
-            form.jTable2.setValueAt(t.getGoal(), casesByCnf.indexOf(t), 1);
-            form.jTable2.setValueAt(t.getGlobalSimilarity(), casesByCnf.indexOf(t), 2);
-        });
-        form.jTable1.setEnabled(false);
+        form.jTable2.setModel(new DefaultTableModel(names, casesByCnf.size()) {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        }
+        );
+        casesByCnf.forEach(
+                (t) -> {
+                    form.jTable2.setValueAt(t.getId(), casesByCnf.indexOf(t), 0);
+                    form.jTable2.setValueAt(t.getGoal(), casesByCnf.indexOf(t), 1);
+                    form.jTable2.setValueAt(t.getGlobalSimilarity(), casesByCnf.indexOf(t), 2);
+                }
+        );
     }
 
     public void createForm() {

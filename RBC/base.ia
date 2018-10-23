@@ -8,3 +8,7 @@ Estação do Ano;Tamanho da Folha;Mancha;Cor das Folhas;Vento;Infestação/100;
 #;Vento;Fraco;Médio Fraco;Médio;Médio Forte;Forte;
 #;Infestação/100;0;100;
 1;A;Verão;3.50;Não;Vermelha;Fraco;40;
+2;A;Verão;5.00;Sim;Marrom;Médio Fraco;30;
+3;B;Primavera;2.15;Não;Preta;?;35;
+4;B;Outono;2.00;Não;Branca;Médio;60;
+5;B;Outono;2.40;Sim;Amarela;Forte;80;
