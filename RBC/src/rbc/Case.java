@@ -57,8 +57,8 @@ public class Case {
         globalSimilarityCalculation();
         return globalSimilarity;
     }
-    
-    public Double getGlobalSimilarity() {        
+
+    public Double getGlobalSimilarity() {
         return globalSimilarity;
     }
 
@@ -72,14 +72,14 @@ public class Case {
         globalSimilarity /= weights.doubleValue();
     }
 
-    public Boolean addValues(ArrayList<Value> values){
+    public Boolean addValues(ArrayList<Value> values) {
         return this.values.addAll(values);
     }
-    
+
     @Override
     public String toString() {
         String vals = "";
-        for (Value t: this.values){
+        for (Value t : this.values) {
             vals += t.getValue();
         }
         return id + ";" + goal + ";" + vals;

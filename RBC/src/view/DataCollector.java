@@ -12,9 +12,9 @@ import controller.CDataCollector;
  * @author rafael
  */
 public class DataCollector extends javax.swing.JFrame {
-    
+
     private CDataCollector controller;
-    
+
     /**
      * Creates new form First
      */
@@ -22,7 +22,7 @@ public class DataCollector extends javax.swing.JFrame {
         initComponents();
         this.controller = controller;
     }
-    
+
     public DataCollector() {
         initComponents();
     }
@@ -159,7 +159,7 @@ public class DataCollector extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controller.createBaseCase();       
+        controller.createBaseCase();
         controller.nextStep(jTextField1.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 

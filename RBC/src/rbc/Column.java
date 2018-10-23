@@ -18,7 +18,7 @@ public class Column {
     private final Integer mathType;
     private final Integer weight;
     private final List<Object> possibleValues;
-    
+
     public Column(String name, Integer mathType, Integer weight) {
         this.name = name;
         this.mathType = mathType;
@@ -41,8 +41,8 @@ public class Column {
     public List<Object> getPossibleValues() {
         return possibleValues;
     }
-    
-    public Boolean addPossibleValue(Object value){
+
+    public Boolean addPossibleValue(Object value) {
         return possibleValues.add(value);
     }
 }

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import rbc.Case;
@@ -40,12 +41,19 @@ public class CSimilarityResult {
         String names[] = RBC.getInstance().getColumnNames();
         setFirstTable(columns, names);
         setSecondTable();
+        form.jPanel3.setLayout(new FlowLayout(1));
+        form.jPanel3.doLayout();
+        form.jPanel3.repaint();
     }
 
     private void setFirstTable(ArrayList<Column> columns, String names[]) {
         form.jTable1.setModel(new DefaultTableModel(names, 1));
         for (int c = 0; c < columns.size(); c++) {
-            form.jTable1.setValueAt(RBC.getInstance().getBaseCase().getValues().get(c).getValue(), 0, c);
+            Object value = RBC.getInstance().getBaseCase().getValues().get(c).getValue();
+            if (value == null) {
+                value = "?";
+            }
+            form.jTable1.setValueAt(value, 0, c);
         }
         form.jTable1.setEnabled(false);
     }
@@ -60,13 +68,11 @@ public class CSimilarityResult {
             }
         }
         );
-        casesByCnf.forEach(
-                (t) -> {
-                    form.jTable2.setValueAt(t.getId(), casesByCnf.indexOf(t), 0);
-                    form.jTable2.setValueAt(t.getGoal(), casesByCnf.indexOf(t), 1);
-                    form.jTable2.setValueAt(t.getGlobalSimilarity(), casesByCnf.indexOf(t), 2);
-                }
-        );
+        casesByCnf.forEach((t) -> {
+            form.jTable2.setValueAt(t.getId(), casesByCnf.indexOf(t), 0);
+            form.jTable2.setValueAt(t.getGoal(), casesByCnf.indexOf(t), 1);
+            form.jTable2.setValueAt(t.getGlobalSimilarity(), casesByCnf.indexOf(t), 2);
+        });
     }
 
     public void createForm() {
