@@ -5,6 +5,11 @@
  */
 package controller;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import rbc.Case;
+import rbc.Column;
+import rbc.RBC;
 import view.SimilarityResult;
 
 /**
@@ -27,29 +32,56 @@ public class CSimilarityResult {
     private SimilarityResult form;
 
     public CSimilarityResult() {
-        form = new SimilarityResult(this);        
+        form = new SimilarityResult(this);
     }
-    
-    private void setCollumsData(){
-        
+
+    private void setCollumsData() {
+        ArrayList<Column> columns = (ArrayList<Column>) RBC.getInstance().getColumns();
+        String names[] = RBC.getInstance().getColumnNames();
+        setFirstTable(columns, names);
+        setSecondTable();
     }
-    
+
+    private void setFirstTable(ArrayList<Column> columns, String names[]) {
+        form.jTable1.setModel(new DefaultTableModel(names, 1));
+        for (int c = 0; c < columns.size(); c++) {
+            form.jTable1.setValueAt(RBC.getInstance().getBaseCase().getValues().get(c).getValue(), 0, c);
+        }
+        form.jTable1.setEnabled(false);
+    }
+
+    private void setSecondTable() {
+        String names[] = {"ID", "Objetivo", "Similaridade"};
+        ArrayList<Case> casesByCnf = RBC.getInstance().getCasesByCnf();
+        form.jTable2.setModel(new DefaultTableModel(names, casesByCnf.size()));
+        casesByCnf.forEach((t) -> {
+            form.jTable2.setValueAt(t.getId(), casesByCnf.indexOf(t), 0);
+            form.jTable2.setValueAt(t.getGoal(), casesByCnf.indexOf(t), 1);
+            form.jTable2.setValueAt(t.getGlobalSimilarity(), casesByCnf.indexOf(t), 2);
+        });
+        form.jTable1.setEnabled(false);
+    }
+
     public void createForm() {
         setCollumsData();
         form.setVisible(true);
     }
-    
+
     public void renewForm() {
         form.dispose();
         form = new SimilarityResult(this);
         setCollumsData();
         form.setVisible(true);
     }
-    
+
     public void showForm() {
         form.setVisible(true);
     }
-    
+
+    public void closeForm() {
+        form.setVisible(false);
+    }
+
     public void goBack() {
         form.setVisible(false);
         CDataCollector.getInstance().showForm();

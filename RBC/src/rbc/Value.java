@@ -39,8 +39,12 @@ public class Value {
         return column;
     }
 
-    public Double getLocalSimilarity() {
+    public Double getCalcLocalSimilarity() {
         localSimilarityCalculation();
+        return localSimilarity;
+    }
+
+    public Double getLocalSimilarity() {
         return localSimilarity;
     }
 
@@ -65,7 +69,7 @@ public class Value {
     }
 
     private Double numericalDifference(Object base) {
-        if (base == null || value == null){
+        if (base == null || value == null) {
             return 0.0;
         }
         return basicCalculation(((Number) base).doubleValue(), ((Number) value).doubleValue(), ((Number) column.getPossibleValues().get(1)).doubleValue(), ((Number) column.getPossibleValues().get(0)).doubleValue());
@@ -84,14 +88,14 @@ public class Value {
         if (posBase == null || posCase == null) {
             return 0.0;
         }
-        return basicCalculation(posBase.doubleValue(), posCase.doubleValue(), ((Integer)(possibleValues.size() - 1)).doubleValue(), 0.0);
+        return basicCalculation(posBase.doubleValue(), posCase.doubleValue(), ((Integer) (possibleValues.size() - 1)).doubleValue(), 0.0);
     }
 
     private Double circularDifference(Object base, ArrayList<Object> possibleValues) {
         if (Util.findInList(possibleValues, base) == null || Util.findInList(possibleValues, value) == null) {
             return 0.0;
         }
-        return basicCalculation(Util.DistanceInList(possibleValues, base, value).doubleValue(), ((Integer)(possibleValues.size() - 1)).doubleValue());
+        return basicCalculation(Util.DistanceInList(possibleValues, base, value).doubleValue(), ((Integer) (possibleValues.size() - 1)).doubleValue());
     }
 
     private Double basicCalculation(Double cP, Double cN, Double vMax, Double vMin) {

@@ -53,8 +53,12 @@ public class Case {
         return values.add(value);
     }
 
-    public Double getGlobalSimilarity() {
+    public Double getCalcGlobalSimilarity() {
         globalSimilarityCalculation();
+        return globalSimilarity;
+    }
+    
+    public Double getGlobalSimilarity() {        
         return globalSimilarity;
     }
 
@@ -62,7 +66,7 @@ public class Case {
         Integer weights = 0;
         globalSimilarity = 0.0;
         for (Value t : values) {
-            globalSimilarity += (t.getLocalSimilarity() * t.getColumn().getWeight());
+            globalSimilarity += (t.getCalcLocalSimilarity() * t.getColumn().getWeight());
             weights += t.getColumn().getWeight();
         }
         globalSimilarity /= weights.doubleValue();

@@ -75,4 +75,22 @@ public class RBC {
         this.cnf = cnf;
     }
 
+    public ArrayList<Case> getCasesByCnf() {
+        ArrayList<Case> result = new ArrayList<>();
+        cases.forEach((t) -> {
+            if (t.getCalcGlobalSimilarity() >= cnf) {
+                result.add(t);
+            }
+        });
+        result.sort((o1, o2) -> {
+            if (o1.getGlobalSimilarity() < o2.getGlobalSimilarity()) {
+                return 1;
+            }
+            if (o1.getGlobalSimilarity() > o2.getGlobalSimilarity()) {
+                return -1;
+            }
+            return 0;
+        });
+        return result;
+    }
 }
