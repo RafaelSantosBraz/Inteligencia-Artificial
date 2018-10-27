@@ -7,34 +7,33 @@ package controller;
 
 import java.awt.FlowLayout;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rbc.Case;
 import rbc.Column;
 import rbc.RBC;
-import view.SimilarityResult;
+import view.CompareCases;
 
 /**
  *
  * @author rafael
  */
-public class CSimilarityResult {
+public class CCompareCases {
 
     //<editor-fold defaultstate="collapsed" desc="SINGLETON">
-    private static CSimilarityResult instance;
+    private static CCompareCases instance;
 
-    public static CSimilarityResult getInstance() {
+    public static CCompareCases getInstance() {
         if (instance == null) {
-            instance = new CSimilarityResult();
+            instance = new CCompareCases();
         }
         return instance;
     }
     //</editor-fold>
 
-    private SimilarityResult form;
+    private CompareCases form;
 
-    public CSimilarityResult() {
-        form = new SimilarityResult(this);
+    public CCompareCases() {
+        form = new CompareCases(this);
     }
 
     private void setCollumsData() {
@@ -83,7 +82,7 @@ public class CSimilarityResult {
 
     public void renewForm() {
         form.dispose();
-        form = new SimilarityResult(this);
+        form = new CompareCases(this);
         setCollumsData();
         form.setVisible(true);
     }
@@ -102,12 +101,6 @@ public class CSimilarityResult {
     }
     
     public void nextStep(){
-        Integer line = form.jTable2.getSelectedRow();
-        if (line == -1){
-            JOptionPane.showMessageDialog(form, "Selecione um caso para comparação!", "Erro Inesperado", 0);
-            return;
-        }
-        closeForm();
-        
+                
     }
 }

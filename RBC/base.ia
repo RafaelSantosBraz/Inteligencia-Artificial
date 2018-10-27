@@ -1,7 +1,7 @@
 3;0;1;2;2;0;
 4;4;2;2;3;3;
 Estação do Ano;Tamanho da Folha;Mancha;Cor das Folhas;Vento;Infestação/100;
-#;Estação do Ano;Inverno;Primavera;verão;Outono;
+#;Estação do Ano;Inverno;Primavera;Verão;Outono;
 #;Tamanho da Folha;2.00;5.00;
 #;Mancha;Sim;Não;
 #;Cor das Folhas;Preta;Marrom;Vermelha;Amarela;Branca;

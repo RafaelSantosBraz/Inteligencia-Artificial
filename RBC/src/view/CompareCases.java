@@ -5,25 +5,25 @@
  */
 package view;
 
-import controller.CSimilarityResult;
+import controller.CCompareCases;
 
 /**
  *
  * @author rafael
  */
-public class SimilarityResult extends javax.swing.JFrame {
+public class CompareCases extends javax.swing.JFrame {
 
-    private CSimilarityResult controller;
+    private CCompareCases controller;
 
     /**
      * Creates new form First
      */
-    public SimilarityResult(CSimilarityResult controller) {
+    public CompareCases(CCompareCases controller) {
         initComponents();
         this.controller = controller;
     }
 
-    public SimilarityResult() {
+    public CompareCases() {
         initComponents();
     }
 
@@ -218,14 +218,18 @@ public class SimilarityResult extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SimilarityResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompareCases.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SimilarityResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompareCases.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SimilarityResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompareCases.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SimilarityResult.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompareCases.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -234,7 +238,7 @@ public class SimilarityResult extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SimilarityResult().setVisible(true);
+                new CompareCases().setVisible(true);
             }
         });
     }
