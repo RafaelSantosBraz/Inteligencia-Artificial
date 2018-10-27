@@ -80,7 +80,11 @@ public class Case {
     public String toString() {
         String vals = "";
         for (Value t : values) {
-            vals += t.getValue();
+            if (t.getValue() == null) {
+                vals += "?;";
+            } else {
+                vals += t.getValue() + ";";
+            }
         }
         return id + ";" + goal + ";" + vals;
     }

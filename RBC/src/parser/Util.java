@@ -125,7 +125,7 @@ public class Util {
     }
 
     public static Boolean saveBaseCaseInFile(String fileName) {
-        try (FileWriter base = new FileWriter(fileName)) {
+        try (FileWriter base = new FileWriter(fileName, true)) {
             base.append(RBC.getInstance().getBaseCase().toString() + '\n');
             return true;
         } catch (Exception e) {

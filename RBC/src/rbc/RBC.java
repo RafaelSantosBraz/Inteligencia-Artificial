@@ -97,8 +97,8 @@ public class RBC {
 
     public Case findCaseById(Integer id) {
         for (Case t : cases) {
-            if (Objects.equals(t.getId(), id)){
-               return t; 
+            if (Objects.equals(t.getId(), id)) {
+                return t;
             }
         }
         return null;

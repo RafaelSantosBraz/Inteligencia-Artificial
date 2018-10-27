@@ -102,6 +102,8 @@ public class CCompareCases {
         if (Util.saveBaseCaseInFile("base.ia")) {
             JOptionPane.showMessageDialog(form, "Caso retido!", "Ação Efetuada Corretamente", 1);
             form.dispose();
+            CDataCollector.getInstance().finishForm();
+            CSimilarityResult.getInstance().finishForm();
         } else {
             JOptionPane.showMessageDialog(form, "Impossível reter o caso no momento!", "Ação Errada", 0);
         }

@@ -120,12 +120,16 @@ public class CSimilarityResult {
         ArrayList<Object> values = RBC.getInstance().findCaseById(id).getCompleteObjectValues();
         return values;
     }
-    
-    public Double getSimSelected(){
+
+    public Double getSimSelected() {
         Integer line = form.jTable2.getSelectedRow();
         if (line == -1) {
             return null;
         }
         return (Double) form.jTable2.getValueAt(line, 2);
+    }
+
+    public void finishForm() {
+        form.dispose();
     }
 }

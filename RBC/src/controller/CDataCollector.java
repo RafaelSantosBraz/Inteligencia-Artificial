@@ -105,4 +105,7 @@ public class CDataCollector {
         CSimilarityResult.getInstance().createForm();
     }
 
+    public void finishForm() {
+        form.dispose();
+    }
 }
