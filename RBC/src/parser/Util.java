@@ -50,26 +50,25 @@ public class Util {
     public static Integer findInList(ArrayList<Object> list, Object comp) {
         for (Object t : list) {
             Number aux = stringNumberConvertion(t.toString());
-            if (aux == null) {                
+            if (aux == null) {
                 return stringFind(list, comp);
             }
             return numberFind(list, aux);
         }
         return null;
     }
-    
-    public static Integer stringFind(ArrayList<Object> list, Object comp){
-        for (Object t: list){
-            if (t.equals(comp))
-            {
+
+    public static Integer stringFind(ArrayList<Object> list, Object comp) {
+        for (Object t : list) {
+            if (t.equals(comp)) {
                 return list.indexOf(t);
             }
         }
         return null;
     }
-    
-    public static Integer numberFind(ArrayList<Object> list, Number comp){
-        for (Object t: list){
+
+    public static Integer numberFind(ArrayList<Object> list, Number comp) {
+        for (Object t : list) {
             if (t.equals(comp.toString()));
             {
                 return list.indexOf(t);
@@ -77,7 +76,7 @@ public class Util {
         }
         return null;
     }
-    
+
     public static Integer DistanceInList(ArrayList<Object> list, Object first, Object last) {
         ArrayList<Object> newList = concatenateList(list);
         Integer posFF = newList.indexOf(first);
@@ -125,9 +124,12 @@ public class Util {
         frame.setVisible(true);
     }
 
-    public static void saveBaseCaseInFile(String fileName) throws IOException {
+    public static Boolean saveBaseCaseInFile(String fileName) {
         try (FileWriter base = new FileWriter(fileName)) {
             base.append(RBC.getInstance().getBaseCase().toString() + '\n');
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 

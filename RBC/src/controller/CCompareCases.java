@@ -6,11 +6,16 @@
 package controller;
 
 import java.awt.FlowLayout;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parser.Util;
 import rbc.Case;
 import rbc.Column;
 import rbc.RBC;
+import rbc.Value;
 import view.CompareCases;
 
 /**
@@ -37,42 +42,34 @@ public class CCompareCases {
     }
 
     private void setCollumsData() {
-        ArrayList<Column> columns = (ArrayList<Column>) RBC.getInstance().getColumns();
+        ArrayList<Value> base = (ArrayList<Value>) RBC.getInstance().getBaseCase().getValues();
+        ArrayList<Object> values = CSimilarityResult.getInstance().getSelectedValues();
         String names[] = RBC.getInstance().getColumnNames();
-        setFirstTable(columns, names);
-        setSecondTable();
+        setTable(names, base, values);
+        form.jTextField1.setText(CSimilarityResult.getInstance().getSimSelected().toString());
         form.jPanel3.setLayout(new FlowLayout(1));
         form.jPanel3.doLayout();
         form.jPanel3.repaint();
     }
 
-    private void setFirstTable(ArrayList<Column> columns, String names[]) {
-        form.jTable1.setModel(new DefaultTableModel(names, 1));
-        for (int c = 0; c < columns.size(); c++) {
-            Object value = RBC.getInstance().getBaseCase().getValues().get(c).getValue();
-            if (value == null) {
-                value = "?";
+    private void setTable(String names[], ArrayList<Value> baseValues, ArrayList<Object> selectedValues) {
+        form.jTable1.setModel(new DefaultTableModel(new String[]{"Atributos", "Caso Base", "Caso Selecionado"}, names.length + 2));
+        form.jTable1.setValueAt("ID", 0, 0);
+        form.jTable1.setValueAt(selectedValues.get(0), 0, 2);
+        form.jTable1.setValueAt("Objetivo", 1, 0);
+        form.jTable1.setValueAt(selectedValues.get(1), 1, 2);
+        for (int c = 0; c < names.length; c++) {
+            form.jTable1.setValueAt(names[c], c + 2, 0);
+            if (baseValues.get(c).getValue() == null) {
+                form.jTable1.setValueAt("?", c + 2, 1);
             }
-            form.jTable1.setValueAt(value, 0, c);
+            form.jTable1.setValueAt(baseValues.get(c).getValue(), c + 2, 1);
+            if (selectedValues.get(c) == null) {
+                form.jTable1.setValueAt("?", c + 2, 2);
+            }
+            form.jTable1.setValueAt(selectedValues.get(c + 2), c + 2, 2);
         }
         form.jTable1.setEnabled(false);
-    }
-
-    private void setSecondTable() {
-        String names[] = {"ID", "Objetivo", "Similaridade"};
-        ArrayList<Case> casesByCnf = RBC.getInstance().getCasesByCnf();
-        form.jTable2.setModel(new DefaultTableModel(names, casesByCnf.size()) {
-            @Override
-            public boolean isCellEditable(int row, int col) {
-                return false;
-            }
-        }
-        );
-        casesByCnf.forEach((t) -> {
-            form.jTable2.setValueAt(t.getId(), casesByCnf.indexOf(t), 0);
-            form.jTable2.setValueAt(t.getGoal(), casesByCnf.indexOf(t), 1);
-            form.jTable2.setValueAt(t.getGlobalSimilarity(), casesByCnf.indexOf(t), 2);
-        });
     }
 
     public void createForm() {
@@ -97,10 +94,16 @@ public class CCompareCases {
 
     public void goBack() {
         form.setVisible(false);
-        CDataCollector.getInstance().showForm();
+        CSimilarityResult.getInstance().showForm();
     }
-    
-    public void nextStep(){
-                
+
+    public void nextStep() {
+        RBC.getInstance().getBaseCase().setGoal(form.jTable1.getValueAt(1, 2));
+        if (Util.saveBaseCaseInFile("base.ia")) {
+            JOptionPane.showMessageDialog(form, "Caso retido!", "Ação Efetuada Corretamente", 1);
+            form.dispose();
+        } else {
+            JOptionPane.showMessageDialog(form, "Impossível reter o caso no momento!", "Ação Errada", 0);
+        }
     }
 }

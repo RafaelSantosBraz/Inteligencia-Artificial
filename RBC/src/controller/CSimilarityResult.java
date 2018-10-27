@@ -100,14 +100,32 @@ public class CSimilarityResult {
         form.setVisible(false);
         CDataCollector.getInstance().showForm();
     }
-    
-    public void nextStep(){
+
+    public void nextStep() {
         Integer line = form.jTable2.getSelectedRow();
-        if (line == -1){
+        if (line == -1) {
             JOptionPane.showMessageDialog(form, "Selecione um caso para comparação!", "Erro Inesperado", 0);
             return;
         }
         closeForm();
-        
+        CCompareCases.getInstance().createForm();
+    }
+
+    public ArrayList<Object> getSelectedValues() {
+        Integer line = form.jTable2.getSelectedRow();
+        if (line == -1) {
+            return null;
+        }
+        Integer id = (Integer) form.jTable2.getValueAt(line, 0);
+        ArrayList<Object> values = RBC.getInstance().findCaseById(id).getCompleteObjectValues();
+        return values;
+    }
+    
+    public Double getSimSelected(){
+        Integer line = form.jTable2.getSelectedRow();
+        if (line == -1) {
+            return null;
+        }
+        return (Double) form.jTable2.getValueAt(line, 2);
     }
 }

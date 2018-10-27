@@ -79,10 +79,20 @@ public class Case {
     @Override
     public String toString() {
         String vals = "";
-        for (Value t : this.values) {
+        for (Value t : values) {
             vals += t.getValue();
         }
         return id + ";" + goal + ";" + vals;
+    }
+
+    public ArrayList<Object> getCompleteObjectValues() {
+        ArrayList<Object> vals = new ArrayList<>();
+        vals.add(id);
+        vals.add(goal);
+        values.forEach((t) -> {
+            vals.add(t.getValue());
+        });
+        return vals;
     }
 
 }

@@ -7,6 +7,7 @@ package rbc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -92,5 +93,14 @@ public class RBC {
             return 0;
         });
         return result;
+    }
+
+    public Case findCaseById(Integer id) {
+        for (Case t : cases) {
+            if (Objects.equals(t.getId(), id)){
+               return t; 
+            }
+        }
+        return null;
     }
 }
