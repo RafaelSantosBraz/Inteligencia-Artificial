@@ -6,14 +6,10 @@
 package controller;
 
 import java.awt.FlowLayout;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import parser.Util;
-import rbc.Case;
-import rbc.Column;
 import rbc.RBC;
 import rbc.Value;
 import view.CompareCases;

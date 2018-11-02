@@ -57,7 +57,7 @@ public class CDataCollector {
         form.jPanel4.setPreferredSize(new Dimension(800, RBC.getInstance().getColumns().size() * 65));
         form.jPanel4.setLayout(new FlowLayout(1));
         form.jPanel4.doLayout();
-        form.jPanel4.repaint();
+        form.jPanel4.repaint();        
         form.jPanel3.setLayout(new FlowLayout(1));
         form.jPanel3.doLayout();
         form.jPanel3.repaint();

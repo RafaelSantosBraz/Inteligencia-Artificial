@@ -16,7 +16,7 @@ import parser.*;
 public class Run {
 
     public static void main(String[] args) throws IOException {
-        Util.readBaseFile("base.ia", Boolean.FALSE);
+        Util.readBaseFile("exer.ia", Boolean.FALSE);
         CDataCollector.getInstance().createForm();
     }
 

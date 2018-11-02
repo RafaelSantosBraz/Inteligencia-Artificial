@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rbc.Case;
-import rbc.Column;
 import rbc.RBC;
 import view.SimilarityResult;
 
@@ -38,31 +37,30 @@ public class CSimilarityResult {
     }
 
     private void setCollumsData() {
-        ArrayList<Column> columns = (ArrayList<Column>) RBC.getInstance().getColumns();
         String names[] = RBC.getInstance().getColumnNames();
-        setFirstTable(columns, names);
+        setFirstTable(names);
         setSecondTable();
         form.jPanel3.setLayout(new FlowLayout(1));
         form.jPanel3.doLayout();
         form.jPanel3.repaint();
     }
 
-    private void setFirstTable(ArrayList<Column> columns, String names[]) {
-        form.jTable1.setModel(new DefaultTableModel(names, 1));
-        for (int c = 0; c < columns.size(); c++) {
+    private void setFirstTable(String names[]) {
+        form.jTable1.setModel(new DefaultTableModel(new String[]{"Atributo", "Valor"}, names.length));
+        for (int c = 0; c < names.length; c++) {
+            form.jTable1.setValueAt(names[c], c, 0);
             Object value = RBC.getInstance().getBaseCase().getValues().get(c).getValue();
             if (value == null) {
                 value = "?";
             }
-            form.jTable1.setValueAt(value, 0, c);
+            form.jTable1.setValueAt(value, c, 1);
         }
         form.jTable1.setEnabled(false);
     }
 
     private void setSecondTable() {
-        String names[] = {"ID", "Objetivo", "Similaridade"};
         ArrayList<Case> casesByCnf = RBC.getInstance().getCasesByCnf();
-        form.jTable2.setModel(new DefaultTableModel(names, casesByCnf.size()) {
+        form.jTable2.setModel(new DefaultTableModel(new String[]{"ID", "Objetivo", "Similaridade"}, casesByCnf.size()) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 return false;
@@ -70,9 +68,10 @@ public class CSimilarityResult {
         }
         );
         casesByCnf.forEach((t) -> {
-            form.jTable2.setValueAt(t.getId(), casesByCnf.indexOf(t), 0);
-            form.jTable2.setValueAt(t.getGoal(), casesByCnf.indexOf(t), 1);
-            form.jTable2.setValueAt(t.getGlobalSimilarity(), casesByCnf.indexOf(t), 2);
+            int index = casesByCnf.indexOf(t);
+            form.jTable2.setValueAt(t.getId(), index, 0);
+            form.jTable2.setValueAt(t.getGoal(), index, 1);
+            form.jTable2.setValueAt(t.getGlobalSimilarity(), index, 2);
         });
     }
 

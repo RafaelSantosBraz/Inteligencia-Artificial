@@ -5,18 +5,24 @@
  */
 package parser;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
-import java.awt.Label;
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.Action;
+import javax.swing.InputVerifier;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.antlr.v4.gui.TreeViewer;
@@ -136,6 +142,24 @@ public class Util {
     public static JTextField createTextField() {
         JTextField t = new JTextField();
         t.setPreferredSize(new Dimension(100, 30));
+        t.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if ((!Character.isDigit(e.getKeyChar()) && !(e.getKeyChar() == '.')) || ((e.getKeyChar() == '.') && (t.getText().indexOf('.') != -1))) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
         return t;
     }
 
@@ -146,8 +170,8 @@ public class Util {
         return j;
     }
 
-    public static Label createLabel(String text) {
-        Label l = new Label(text + ':');
+    public static JLabel createLabel(String text) {
+        JLabel l = new JLabel(text + ':');
         return l;
     }
 
